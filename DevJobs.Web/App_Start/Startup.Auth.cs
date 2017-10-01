@@ -6,7 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using DevJobs.Web.Models;
-using DevJobs.Data.Model;
+using DevJobs.Data;
 
 namespace DevJobs.Web
 {

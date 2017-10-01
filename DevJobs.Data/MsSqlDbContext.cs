@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevJobs.Data.Model
+namespace DevJobs.Data
 {
     public class MsSqlDbContext : IdentityDbContext<User>
     {

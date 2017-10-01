@@ -12,7 +12,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using DevJobs.Web.Models;
 using DevJobs.Models;
-using DevJobs.Data.Model;
+using DevJobs.Data;
 
 namespace DevJobs.Web
 {
