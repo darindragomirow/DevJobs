@@ -13,17 +13,19 @@ namespace DevJobs.Data.Repositories
         where T : class, IDeletable
     {
         private readonly MsSqlDbContext context;
+        private readonly DbSet<T> dbSet;
 
         public EfRepository(MsSqlDbContext context)
         {
             this.context = context;
+            this.dbSet = context.Set<T>();
         }
 
         public IQueryable<T> All
         {
             get
             {
-                return this.context.Set<T>().Where(x => !x.IsDeleted);
+                return this.dbSet.Where(x => !x.IsDeleted);
             }
         }
 
@@ -31,7 +33,7 @@ namespace DevJobs.Data.Repositories
         {
             get
             {
-                return this.context.Set<T>();
+                return this.dbSet;
             }
         }
 
@@ -45,7 +47,7 @@ namespace DevJobs.Data.Repositories
             }
             else
             {
-                this.context.Set<T>().Add(entity);
+                this.dbSet.Add(entity);
             }
         }
 
@@ -63,7 +65,7 @@ namespace DevJobs.Data.Repositories
             DbEntityEntry entry = this.context.Entry(entity);
             if (entry.State == EntityState.Detached)
             {
-                this.context.Set<T>().Attach(entity);
+                this.dbSet.Attach(entity);
             }
 
             entry.State = EntityState.Modified;

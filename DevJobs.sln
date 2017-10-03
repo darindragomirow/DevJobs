@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevJobs.Data", "DevJobs.Dat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevJobs.Data.Model", "DevJobs.Models\DevJobs.Data.Model.csproj", "{E563A437-9165-4478-AC22-9FD0EB95FE03}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevJobs.Services", "DevJobs.Servicess\DevJobs.Services.csproj", "{89343127-5FAC-4625-934D-6C78446FBD7B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{E563A437-9165-4478-AC22-9FD0EB95FE03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E563A437-9165-4478-AC22-9FD0EB95FE03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E563A437-9165-4478-AC22-9FD0EB95FE03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89343127-5FAC-4625-934D-6C78446FBD7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89343127-5FAC-4625-934D-6C78446FBD7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89343127-5FAC-4625-934D-6C78446FBD7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89343127-5FAC-4625-934D-6C78446FBD7B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
