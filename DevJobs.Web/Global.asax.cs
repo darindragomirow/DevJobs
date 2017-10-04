@@ -16,6 +16,8 @@ namespace DevJobs.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            //  var mapper = new AutoMapperConfig();
         }
     }
 }

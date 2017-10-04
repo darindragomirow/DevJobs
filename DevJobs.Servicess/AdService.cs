@@ -10,12 +10,12 @@ using DevJobs.Data.SaveContext;
 
 namespace DevJobs.Services
 {
-    public class Service : IService,IDisposable
+    public class AdService : IAdService,IDisposable
     {
         private readonly IEfRepository<Advert> adsRepo;
         private readonly ISaveContext context;
 
-        public Service(IEfRepository<Advert> adsRepo, ISaveContext context)
+        public AdService(IEfRepository<Advert> adsRepo, ISaveContext context)
         {
             this.adsRepo = adsRepo;
             this.context = context;

@@ -1,4 +1,7 @@
-﻿@{
+﻿@using DevJobs.Web.Models
+@model MainViewModel
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -28,4 +31,16 @@
         <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
         <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
+</div>
+
+<hr />
+<div class="row">
+    @foreach (var ad in Model.Ads)
+    {
+        <div class="col-md-4">
+            <h2>@ad.Title</h2>
+            <p>@ad.Description</p>
+            <p>@ad.CreatedOn</p>
+        </div>
+    }
 </div>

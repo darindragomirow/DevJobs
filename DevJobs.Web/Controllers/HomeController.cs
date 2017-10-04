@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DevJobs.Services.Contracts;
+using DevJobs.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +10,32 @@ namespace DevJobs.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IAdService adService;
+
+        public HomeController(IAdService adService)
+        {
+            this.adService = adService;
+        }
+
         public ActionResult Index()
         {
-            return View();
+            var ads = this.adService
+                .GetAll()
+                .Select(x => new AdViewModel
+                {
+                    Title = x.Title,
+                    Description = x.Description,
+                    CompanyName = x.Company.Name,
+                    CreatedOn = x.CreatedOn.Value
+                })
+                .ToList();
+
+            var viewModel = new MainViewModel()
+            {
+                Ads = ads,
+            };
+
+            return View(viewModel);
         }
 
         public ActionResult About()

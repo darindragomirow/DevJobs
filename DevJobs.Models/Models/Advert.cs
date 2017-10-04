@@ -1,4 +1,5 @@
 ﻿using DevJobs.Models.Abstracts;
+using DevJobs.Models.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -53,6 +53,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201710042009192_Initial.cs" />
+    <Compile Include="Migrations\201710042009192_Initial.Designer.cs">
+      <DependentUpon>201710042009192_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710042027546_Simple data added.cs" />
+    <Compile Include="Migrations\201710042027546_Simple data added.Designer.cs">
+      <DependentUpon>201710042027546_Simple data added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MsSqlDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,6 +79,13 @@
       <Name>DevJobs.Data.Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201710042009192_Initial.resx">
+      <DependentUpon>201710042009192_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710042027546_Simple data added.resx">
+      <DependentUpon>201710042027546_Simple data added.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

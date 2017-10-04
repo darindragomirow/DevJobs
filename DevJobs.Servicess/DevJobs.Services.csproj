@@ -40,9 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IAdService.cs" />
     <Compile Include="Contracts\IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service.cs" />
+    <Compile Include="AdService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DevJobs.Data\DevJobs.Data.csproj">
