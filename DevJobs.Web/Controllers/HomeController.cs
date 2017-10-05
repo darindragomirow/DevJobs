@@ -1,4 +1,5 @@
-﻿using DevJobs.Services.Contracts;
+﻿using AutoMapper;
+using DevJobs.Services.Contracts;
 using DevJobs.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -11,31 +12,31 @@ namespace DevJobs.Web.Controllers
     public class HomeController : Controller
     {
         private readonly IAdService adService;
+        private readonly IMapper mapper;
 
-        public HomeController(IAdService adService)
+        
+        public HomeController(IAdService adService, IMapper mapper)
         {
             this.adService = adService;
+            this.mapper = mapper;
         }
 
+        [HttpGet]
         public ActionResult Index()
         {
-            var ads = this.adService
-                .GetAll()
-                .Select(x => new AdViewModel
-                {
-                    Title = x.Title,
-                    Description = x.Description,
-                    CompanyName = x.Company.Name,
-                    CreatedOn = x.CreatedOn.Value
-                })
-                .ToList();
+            //var ads = this.adService
+            //    .GetAll()
+            //    .Select(x => this.mapper.Map<AdViewModel>(x))
+            //    .ToList();
 
-            var viewModel = new MainViewModel()
-            {
-                Ads = ads,
-            };
+            //var viewModel = new MainViewModel()
+            //{
+            //    Ads = ads,
+            //};
 
-            return View(viewModel);
+            //return View(viewModel);
+
+            return View();
         }
 
         public ActionResult About()
