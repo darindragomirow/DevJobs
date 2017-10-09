@@ -61,6 +61,10 @@
     <Compile Include="Migrations\201710042027546_Simple data added.Designer.cs">
       <DependentUpon>201710042027546_Simple data added.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710090823534_Fixed Models foreign keys.cs" />
+    <Compile Include="Migrations\201710090823534_Fixed Models foreign keys.Designer.cs">
+      <DependentUpon>201710090823534_Fixed Models foreign keys.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MsSqlDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,6 +89,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710042027546_Simple data added.resx">
       <DependentUpon>201710042027546_Simple data added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710090823534_Fixed Models foreign keys.resx">
+      <DependentUpon>201710090823534_Fixed Models foreign keys.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

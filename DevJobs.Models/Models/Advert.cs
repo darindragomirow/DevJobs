@@ -16,15 +16,9 @@ namespace DevJobs.Models
 
         public int PreViews { get; set; }
 
-        public int? CityId { get; set; }
-
         public virtual City City { get; set; }
 
-        public int? CountryId { get; set; }
-
         public virtual Country Country { get; set; }    
-
-        public int? CompanyId { get; set; }
 
         public virtual Company Company { get; set; }
 

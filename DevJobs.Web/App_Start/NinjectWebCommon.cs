@@ -82,22 +82,10 @@ namespace DevJobs.Web.App_Start
                  .BindDefaultInterface();
             });
 
-            kernel.Bind<IMapper>()
-                    .ToMethod(context =>
-        {
-        var config = new MapperConfiguration(cfg =>
-        {
-            cfg.ConstructServicesUsing(t => kernel.Get(t));
-        });
-        return config.CreateMapper();
-        }).InSingletonScope();
-
             kernel.Bind(typeof(IEfRepository<>)).To(typeof(EfRepository<>));
             kernel.Bind(typeof(DbContext), typeof(MsSqlDbContext)).To<MsSqlDbContext>().InRequestScope();
             kernel.Bind<ISaveContext>().To<SaveContext>();
-            //kernel.Bind<IMapper>().To<Mapper>();
-            //kernel.Bind<IConfiguration>().To<Configuration>();
-
+            kernel.Bind<IMapper>().To<Mapper>();
 
         }
     }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DevJobs.Models;
 using DevJobs.Services.Contracts;
 using DevJobs.Web.Models;
 using System;
@@ -15,28 +16,28 @@ namespace DevJobs.Web.Controllers
         private readonly IMapper mapper;
 
         
-        public HomeController(IAdService adService, IMapper mapper)
+        public HomeController(IAdService adService)
         {
             this.adService = adService;
-            this.mapper = mapper;
+            //this.mapper = mapper;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
-            //var ads = this.adService
-            //    .GetAll()
-            //    .Select(x => this.mapper.Map<AdViewModel>(x))
-            //    .ToList();
+            var ads = this.adService
+                .GetAll()
+                .ToList()
+                .Select(x => Mapper.Map<AdViewModel>(x));
+                
 
-            //var viewModel = new MainViewModel()
-            //{
-            //    Ads = ads,
-            //};
+            var viewModel = new MainViewModel()
+            {
+                Ads = ads.ToList(),
+            };
 
-            //return View(viewModel);
 
-            return View();
+            return View(viewModel);
         }
 
         public ActionResult About()
