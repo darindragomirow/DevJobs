@@ -10,6 +10,8 @@ namespace DevJobs.Web.Models
 {
     public class AdViewModel : IMapFrom<Advert>, IHaveCustomMappings
     {
+        public Guid Id { get; set; }
+
         public string Title { get; set; }
 
         public string Description { get; set; }

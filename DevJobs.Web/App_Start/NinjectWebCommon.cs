@@ -22,6 +22,8 @@ namespace DevJobs.Web.App_Start
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
+        public static IKernel Kernel { get; private set; }
+
         /// <summary>
         /// Starts the application
         /// </summary>
@@ -47,6 +49,7 @@ namespace DevJobs.Web.App_Start
         private static IKernel CreateKernel()
         {
             var kernel = new StandardKernel();
+            Kernel = kernel;
             try
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
@@ -81,11 +84,13 @@ namespace DevJobs.Web.App_Start
                  .SelectAllClasses()
                  .BindDefaultInterface();
             });
+            
 
             kernel.Bind(typeof(IEfRepository<>)).To(typeof(EfRepository<>));
             kernel.Bind(typeof(DbContext), typeof(MsSqlDbContext)).To<MsSqlDbContext>().InRequestScope();
             kernel.Bind<ISaveContext>().To<SaveContext>();
-            kernel.Bind<IMapper>().To<Mapper>();
+            kernel.Bind<IMapper>().To<Mapper>().InSingletonScope();
+            
 
         }
     }
