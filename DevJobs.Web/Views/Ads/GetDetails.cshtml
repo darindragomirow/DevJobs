@@ -5,7 +5,41 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.Title</h2>
+@*<h2>@Model.Title</h2>
 <hr />
-<p>@Model.Description</p>
-<h3>Previews:@Model.PreViews</h3>
+<p>@Model.Description</p>*@
+
+<div class="row" style="border:1px solid black; margin:10px;">
+    <div class="row">
+        <img src="~/Content/Images/vmware_cloud_logo.jpg" style="height:100px;height:100px; padding:10px;margin:10px;" />
+    </div>
+    <div class="row" style="border:1px solid black; margin:5px;">
+        <div class="col-md-4" style="border:1px solid black; margin:5px;">
+            <div class="jobOptions">
+                <div>Info</div>
+                <strong style="display:block;">CompanyName</strong>
+                <span>{Name}</span>
+                <strong style="display:block;">City</strong>
+                <span>@Model.City</span>
+                <strong style="display:block;">Technology</strong>
+                <span>{Type}</span>
+                <strong style="display:block;">Level</strong>
+                <span>{Type}</span>
+                <strong style="display:block;">Added on</strong>
+                <span>@Model.CreatedOn</span>
+                <strong style="display:block;">Seen</strong>
+                <span>{Previews}</span>
+            </div>
+        </div>
+        <div class="col-md-6" style="display:inline-block;">
+            <div class="info">
+                <h1>@Model.Title</h1>
+                <span>Description and requirements:</span>
+                <p>
+                    @Model.Description
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+

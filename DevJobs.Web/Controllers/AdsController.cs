@@ -2,6 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using DevJobs.Models;
 using DevJobs.Services.Contracts;
+using DevJobs.Servicess.Contracts;
 using DevJobs.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,12 @@ namespace DevJobs.Web.Controllers
     public class AdsController : Controller
     {
         private readonly IAdService adService;
-        
-        public AdsController(IAdService adService)
+        private readonly ICityService cityService;
+
+        public AdsController(IAdService adService, ICityService cityService)
         {
             this.adService = adService;
+            this.cityService = cityService;
         }
         [HttpGet]
         public ActionResult GetDetails(Guid id)
@@ -75,6 +78,9 @@ namespace DevJobs.Web.Controllers
                 model.Id = Guid.NewGuid();
                 
                 var ad = Mapper.Map<AdViewModel, Advert>(model);
+                var city = this.cityService.GetAll().Where(x => x.Name.Equals("Burgas")).SingleOrDefault();
+                ad.CityId = city.Id;
+
                 this.adService.Add(ad);
 
                 this.ModelState.Clear();

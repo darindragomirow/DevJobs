@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using DevJobs.Common.Constants;
 using DevJobs.Models;
 using DevJobs.Services.Contracts;
 using DevJobs.Web.Models;
@@ -23,13 +24,15 @@ namespace DevJobs.Web.Controllers
             //this.mapper = mapper;
         }
 
+        
         [HttpGet]
+        [OutputCache(Duration = Constants.DefaultCacheDuration)]
         public ActionResult Index()
         {
             var ads = this.adService
                 .GetAll()
                 .OrderByDescending(x=> x.CreatedOn.Value)
-                .Take(5)
+                .Take(Constants.TopAdsCount)
                 .ToList()
                 .Select(x => Mapper.Map<AdViewModel>(x));
                 
