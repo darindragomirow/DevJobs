@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using DevJobs.Models;
 using DevJobs.Services.Contracts;
 using DevJobs.Web.Models;
 using System;
@@ -40,11 +41,16 @@ namespace DevJobs.Web.Controllers
         {
             string value = Request.Form["ChoiceList"].ToString();
             ViewBag.SelectedValue = value;
-            var ads = this.adService
-                .GetAll()
+            //var ads = this.adService
+            //    .GetAll()
+            //    .ProjectTo<AdViewModel>()
+            //    .Where(x => x.Title.ToLower().Contains(searchTerm.ToLower()))
+            //    .ToList();
+
+            var ads = this.adService.GetFiltered(searchTerm)
                 .ProjectTo<AdViewModel>()
-                .Where(x => x.Title.ToLower().Contains(searchTerm.ToLower()))
                 .ToList();
+                
 
             var viewModel = new MainViewModel()
             {
@@ -52,6 +58,29 @@ namespace DevJobs.Web.Controllers
             };
 
             return this.View(viewModel);
+        }
+
+        [HttpGet]
+        public ActionResult CreateAd()
+        {
+            return this.View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateAd(AdViewModel model)
+        {
+            if (this.ModelState.IsValid)
+            {
+                model.CreatedOn = DateTime.Now;
+                model.Id = Guid.NewGuid();
+                
+                var ad = Mapper.Map<AdViewModel, Advert>(model);
+                this.adService.Add(ad);
+
+                this.ModelState.Clear();
+            }
+
+            return this.View();
         }
     }
 }

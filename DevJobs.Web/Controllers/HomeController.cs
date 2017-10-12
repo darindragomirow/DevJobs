@@ -28,7 +28,8 @@ namespace DevJobs.Web.Controllers
         {
             var ads = this.adService
                 .GetAll()
-                .OrderBy(x => x.CreatedOn)
+                .OrderByDescending(x=> x.CreatedOn.Value)
+                .Take(5)
                 .ToList()
                 .Select(x => Mapper.Map<AdViewModel>(x));
                 
@@ -40,6 +41,8 @@ namespace DevJobs.Web.Controllers
 
             var list = new List<string>() { "Sofia", "Plovdiv", "Burgas" };
             ViewBag.ChoiceList = new SelectList(list);
+            var technologyList = new List<string>() { "ASP.NET", "Java EE", "Android", "Front-end", "MSSQL" };
+            ViewBag.TechnologyList = new SelectList(technologyList);
 
             return View(viewModel);
         }

@@ -65,7 +65,7 @@ namespace DevJobs.Data.Migrations
                     {
                         Title = "Advert " + i,
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet lobortis nibh. Nullam bibendum, tortor quis porttitor fringilla, eros risus consequat orci, at scelerisque mauris dolor sit amet nulla. Vivamus turpis lorem, pellentesque eget enim ut, semper faucibus tortor. Aenean malesuada laoreet lorem.",
-                        CreatedOn = DateTime.Now
+                        CreatedOn = DateTime.Now,
                     };
 
                     context.Adverts.Add(advert);

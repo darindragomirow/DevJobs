@@ -221,6 +221,7 @@
     <Compile Include="Infrastructure\QueryableExtensions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdViewModel.cs" />
+    <Compile Include="Models\CreateAdViewModel.cs" />
     <Compile Include="Models\MainViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -284,6 +285,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Ads\GetDetails.cshtml" />
     <Content Include="Views\Ads\GetFiltered.cshtml" />
+    <Content Include="Views\Ads\CreateAd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

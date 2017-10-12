@@ -26,6 +26,23 @@ namespace DevJobs.Services
             return this.adsRepo.All;
         }
 
+        public IQueryable<Advert> GetFiltered(string searchTerm)
+        {
+            //var ads = this.adService
+            //    .GetAll()
+            //    .ProjectTo<AdViewModel>()
+            //    .Where(x => x.Title.ToLower().Contains(searchTerm.ToLower()))
+            //    .ToList();
+
+            return this.adsRepo.All.Where(x => x.Title.ToLower().Contains(searchTerm.ToLower()));
+        }
+
+        public void Add(Advert ad)
+        {
+            this.adsRepo.Add(ad);
+            context.Commit();
+        }
+
         public void Update(Advert ad)
         {
             this.adsRepo.Update(ad);
