@@ -73,6 +73,14 @@
     <Compile Include="Migrations\201710101550455_FixedModels.Designer.cs">
       <DependentUpon>201710101550455_FixedModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710121748095_AdditionalPropertiesAdded.cs" />
+    <Compile Include="Migrations\201710121748095_AdditionalPropertiesAdded.Designer.cs">
+      <DependentUpon>201710121748095_AdditionalPropertiesAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710121839577_AddedForeignKeysToModels.cs" />
+    <Compile Include="Migrations\201710121839577_AddedForeignKeysToModels.Designer.cs">
+      <DependentUpon>201710121839577_AddedForeignKeysToModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MsSqlDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -106,6 +114,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710101550455_FixedModels.resx">
       <DependentUpon>201710101550455_FixedModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710121748095_AdditionalPropertiesAdded.resx">
+      <DependentUpon>201710121748095_AdditionalPropertiesAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710121839577_AddedForeignKeysToModels.resx">
+      <DependentUpon>201710121839577_AddedForeignKeysToModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -71,6 +71,28 @@ namespace DevJobs.Data.Migrations
                     context.Adverts.Add(advert);
                 }
             }
+
+            if (!context.Cities.Any())
+            {
+                City city1 = new City() { Name = "Plovdiv" };
+                City city2 = new City() { Name = "Sofiq" };
+                City city3 = new City() { Name = "Burgas" };
+
+                context.Cities.Add(city1);
+                context.Cities.Add(city2);
+                context.Cities.Add(city3);
+
+            }
+
+
+            if (!context.Countries.Any())
+            {
+                Country country1 = new Country() { Name = "Bulgaria" };
+                Country country2 = new Country() { Name = "Foreign Country" };
+
+                context.Countries.Add(country1);
+                context.Countries.Add(country2);
+            }
         }
     }
 }

@@ -10,5 +10,7 @@ namespace DevJobs.Models.Models
     public class Technology : DataModel
     {
         public string Type { get; }
+
+        public ICollection<Advert> Adverts { get; set; }
     }
 }

@@ -23,6 +23,8 @@ namespace DevJobs.Web.Models
 
         public string City { get; set; }
 
+        public int PreViews { get; set; }
+
         public void CreateMappings(IMapperConfigurationExpression configuration)
         {
             configuration.CreateMap<Advert, AdViewModel>()

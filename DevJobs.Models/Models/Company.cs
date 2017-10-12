@@ -1,4 +1,6 @@
 ﻿using DevJobs.Models.Abstracts;
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DevJobs.Models
 {
@@ -10,8 +12,14 @@ namespace DevJobs.Models
 
         public int Rating { get; set; }
 
+        [ForeignKey("CountryId")]
         public virtual Country Country { get; set; }
 
+        public Guid ? CountryId { get; set; }
+
+        [ForeignKey("CityId")]
         public virtual City City { get; set; }
+        
+        public Guid ? CityId { get; set; }
     }
 }

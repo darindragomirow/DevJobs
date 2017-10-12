@@ -10,5 +10,7 @@ namespace DevJobs.Models.Models
     public class Level : DataModel
     {
         public string Type { get; set; }
+
+        public ICollection<Advert> Adverts { get; set; }
     }
 }
