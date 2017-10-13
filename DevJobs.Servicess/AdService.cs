@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using DevJobs.Models;
 using DevJobs.Data.Repositories;
 using DevJobs.Data.SaveContext;
+using DevJobs.Servicess.Contracts;
 
 namespace DevJobs.Services
 {

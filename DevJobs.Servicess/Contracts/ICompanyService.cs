@@ -1,4 +1,4 @@
-﻿using DevJobs.Models.Models;
+﻿using DevJobs.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace DevJobs.Servicess.Contracts
 {
-    public interface ITechnologyService
+    public interface ICompanyService
     {
-        IQueryable<Technology> GetAll();
+        IQueryable<Company> GetAll();
     }
 }

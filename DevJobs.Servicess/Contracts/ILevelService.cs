@@ -9,6 +9,6 @@ namespace DevJobs.Servicess.Contracts
 {
     public interface ILevelService
     {
-        IQueryable<Level> GetAll { get; set; }
+        IQueryable<Level> GetAll();
     }
 }
