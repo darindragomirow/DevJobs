@@ -81,20 +81,20 @@ namespace DevJobs.Web.App_Start
                  .BindDefaultInterface();
             });
 
-            //kernel.Bind(x =>
-            //{
-            //    x.FromAssemblyContaining(typeof(IService))
-            //     .SelectAllClasses()
-            //     .BindDefaultInterface();
-            //});
-            
+            kernel.Bind(x =>
+            {
+                x.FromAssemblyContaining(typeof(IService))
+                 .SelectAllClasses()
+                 .BindDefaultInterface();
+            });
+
 
             kernel.Bind(typeof(IEfRepository<>)).To(typeof(EfRepository<>));
             kernel.Bind(typeof(DbContext), typeof(MsSqlDbContext)).To<MsSqlDbContext>().InRequestScope();
             kernel.Bind<ISaveContext>().To<SaveContext>();
             kernel.Bind<IMapper>().To<Mapper>().InSingletonScope();
-            kernel.Bind<IAdService>().To<AdService>().InSingletonScope();
-            kernel.Bind<ICityService>().To<CityService>().InSingletonScope();
+            //kernel.Bind<IAdService>().To<AdService>().InSingletonScope();
+            //kernel.Bind<ICityService>().To<CityService>().InSingletonScope();
             
 
         }

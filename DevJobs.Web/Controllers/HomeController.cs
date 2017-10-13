@@ -26,7 +26,6 @@ namespace DevJobs.Web.Controllers
 
         
         [HttpGet]
-        [OutputCache(Duration = Constants.DefaultCacheDuration)]
         public ActionResult Index()
         {
             var ads = this.adService

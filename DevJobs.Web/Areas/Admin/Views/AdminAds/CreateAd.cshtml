@@ -1,0 +1,63 @@
+﻿
+@using DevJobs.Web.Areas.Admin.Models
+@model CreateAdViewModel
+@{
+    ViewBag.Title = "Create a new Ad";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="createAddView">
+        @Html.Partial("_AdminPanelPartial")
+    <div class="col-md-8">
+        
+        @using (Html.BeginForm("CreateAd", "AdminAds", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <br />
+            <hr />
+            <form>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <br />
+                        @Html.TextBoxFor(m => m.Title)
+                    </div>
+                    <div class="form-group">
+                        <label>Company</label>
+                        <br />
+                        @Html.TextBoxFor(m => m.CompanyName)
+                    </div>
+                    <div class="form-group">
+                        <label>Technology</label>
+                        <br />
+                        @Html.TextBoxFor(m => m.Technology)
+                    </div>
+                    <div class="form-group">
+                        <label>Level</label>
+                        <br />
+                        @*@Html.DropDownListFor(,m => m.City)*@
+                        @Html.TextBoxFor(m => m.City)
+                    </div>
+                    <div class="form-group">
+                        <label>City</label>
+                        <br />
+                        @*@Html.DropDownListFor(m => m.Level)>*@
+                        @Html.TextBoxFor(m => m.Level)
+                    </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Description</label>
+                            <br />
+                            @Html.TextAreaFor(m => m.Description, 10, 40, new { HtmlAttributes = new { } })
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputFile">File input</label>
+                            <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+                            <small id="fileHelp" class="form-text text-muted">Upload an image max 10MB</small>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+</form>
+        }
+    </div>
+</div>
+

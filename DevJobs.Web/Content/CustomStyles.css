@@ -79,3 +79,15 @@ select{
 .searchButtonContainer {
     margin-left: 380px;
 }
+
+#adminButton{
+    color:yellow;
+}
+
+#adminPageTitle{
+    color:yellow;
+}
+
+textarea{
+    resize: none;
+}

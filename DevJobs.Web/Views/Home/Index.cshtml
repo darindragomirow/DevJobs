@@ -9,24 +9,24 @@
     <p class="text-center lead">DevJobs.bg is a free website for searching developer jobs in Bulgaria.</p>
     <div class="searchForm">
         @using (@Html.BeginForm("GetFiltered", "Ads", FormMethod.Post))
-        {
-        <ul>
-            <li>
-                <div class="lab">Key words</div>
-                <input name="searchTerm" type="text" class="keyWords">
-            </li>
-            <li>
-                <div class="lab">Location</div>
-                @Html.DropDownList("ChoiceList")
-            </li>
-            <li>
-                <div class="lab">Technology</div>
-                @Html.DropDownList("TechnologyList")
-            </li>
-       </ul>
-        <div class="searchButtonContainer">
-            <input type="submit" class="searchButton" value="SEARCH">
-        </div>
+            {
+            <ul>
+                <li>
+                    <div class="lab">Key words</div>
+                    <input name="searchTerm" type="text" class="keyWords">
+                </li>
+                <li>
+                    <div class="lab">Location</div>
+                    @Html.DropDownList("ChoiceList")
+                </li>
+                <li>
+                    <div class="lab">Technology</div>
+                    @Html.DropDownList("TechnologyList")
+                </li>
+            </ul>
+                <div class="searchButtonContainer">
+                    <input type="submit" class="searchButton" value="SEARCH">
+                </div>
         }
     </div>
 </div>
@@ -39,7 +39,7 @@
             <h4>Latest added adverts:</h4>
         </div>
         @foreach (var ad in Model.Ads)
-        {
+            {
             <a style="color:black" href='@Url.Action("GetDetails","Ads", new { ad.Id },null)'>
                 <div class="ad">
                     <span class="pull-right">@ad.CreatedOn</span>
@@ -53,7 +53,7 @@
         <h2>Top Companies:</h2>
         <div class="top-company">
             <span class="pull-right">
-            <img class="companyLogo" src="~/Content/Images/vmware_cloud_logo.jpg" />
+                <img class="companyLogo" src="~/Content/Images/vmware_cloud_logo.jpg" />
             </span>
             <h3>VMWare</h3>
         </div>
