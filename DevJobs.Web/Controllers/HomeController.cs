@@ -15,9 +15,9 @@ namespace DevJobs.Web.Controllers
     public class HomeController : Controller
     {
         private readonly IAdService adService;
-        //private readonly  IMapper mapper;
+        //private readonly IMapper mapper;
 
-        
+
         public HomeController(IAdService adService)
         {
             this.adService = adService;
