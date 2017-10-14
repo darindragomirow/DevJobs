@@ -1,0 +1,9 @@
+﻿@using DevJobs.Web.Models
+@model MainViewModel
+
+@foreach (var x in Model.Companies)
+{
+    <div class="top-company">
+        <h3>@x.Name</h3>
+    </div>
+}

@@ -24,9 +24,9 @@
                     @Html.DropDownList("TechnologyList")
                 </li>
             </ul>
-                <div class="searchButtonContainer">
-                    <input type="submit" class="searchButton" value="SEARCH">
-                </div>
+            <div class="searchButtonContainer">
+                <input type="submit" class="searchButton" value="SEARCH">
+            </div>
         }
     </div>
 </div>
@@ -50,42 +50,6 @@
         }
     </div>
     <div class="col-md-4 topCompanies">
-        <h2>Top Companies:</h2>
-        <div class="top-company">
-            <span class="pull-right">
-                <img class="companyLogo" src="~/Content/Images/vmware_cloud_logo.jpg" />
-            </span>
-            <h3>VMWare</h3>
-        </div>
-        <div class="top-company">
-            <span class="pull-right">
-                <img class="companyLogo" src="~/Content/Images/vmware_cloud_logo.jpg" />
-            </span>
-            <h3>SAP</h3>
-        </div>
-        <div class="top-company">
-            <span class="pull-right">
-                <img class="companyLogo" src="~/Content/Images/vmware_cloud_logo.jpg" />
-            </span>
-            <h3>Telerik</h3>
-        </div>
-        <div class="top-company">
-            <span class="pull-right">
-                <img class="companyLogo" src="~/Content/Images/vmware_cloud_logo.jpg" />
-            </span>
-            <h3>Progress</h3>
-        </div>
-        <div class="top-company">
-            <span class="pull-right">
-                <img class="companyLogo" src="~/Content/Images/vmware_cloud_logo.jpg" />
-            </span>
-            <h3>eCommera</h3>
-        </div>
-        <div class="top-company">
-            <span class="pull-right">
-                <img class="companyLogo" src="~/Content/Images/vmware_cloud_logo.jpg" />
-            </span>
-            <h3>IBM</h3>
-        </div>
+        @Html.Partial("_TopCompaniesPartial", Model)
     </div>
 </div>

@@ -89,6 +89,10 @@
     <Compile Include="Migrations\201710140911431_SeedAdditionalData.Designer.cs">
       <DependentUpon>201710140911431_SeedAdditionalData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710141502333_RequiredAttributesAddedToModels.cs" />
+    <Compile Include="Migrations\201710141502333_RequiredAttributesAddedToModels.Designer.cs">
+      <DependentUpon>201710141502333_RequiredAttributesAddedToModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MsSqlDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -134,6 +138,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710140911431_SeedAdditionalData.resx">
       <DependentUpon>201710140911431_SeedAdditionalData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710141502333_RequiredAttributesAddedToModels.resx">
+      <DependentUpon>201710141502333_RequiredAttributesAddedToModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

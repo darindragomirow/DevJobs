@@ -1,11 +1,20 @@
 ﻿using DevJobs.Models.Abstracts;
+using DevJobs.Models.Contracts;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DevJobs.Models
 {
-    public class Company : DataModel
+    public class Company : DataModel, IDataModel
     {
+        public Company()
+        {
+            this.Adverts = new HashSet<Advert>();
+        }
+
+        [Required]
         public string Name { get; set; }
 
         public string Description { get; set; }
@@ -21,5 +30,7 @@ namespace DevJobs.Models
         public virtual City City { get; set; }
         
         public Guid ? CityId { get; set; }
+
+        public virtual ICollection<Advert> Adverts { get; set; }
     }
 }

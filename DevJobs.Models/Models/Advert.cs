@@ -1,4 +1,5 @@
-﻿using DevJobs.Models.Abstracts;
+﻿using DevJobs.Common.Constants;
+using DevJobs.Models.Abstracts;
 using DevJobs.Models.Contracts;
 using DevJobs.Models.Models;
 using System;
@@ -11,10 +12,12 @@ using System.Threading.Tasks;
 
 namespace DevJobs.Models
 {
-    public class Advert : DataModel
+    public class Advert : DataModel, IDataModel
     {
+        [Required]
         public string Title { get; set; }
 
+        [Required]
         public string Description { get; set; }
 
         public int PreViews { get; set; }

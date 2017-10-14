@@ -3,6 +3,7 @@ using AutoMapper.QueryableExtensions;
 using DevJobs.Common.Constants;
 using DevJobs.Models;
 using DevJobs.Services.Contracts;
+using DevJobs.Servicess.Contracts;
 using DevJobs.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -16,11 +17,12 @@ namespace DevJobs.Web.Controllers
     {
         private readonly IAdService adService;
         private readonly IMapper mapper;
+        private readonly ICompanyService companyService;
 
-
-        public HomeController(IAdService adService, IMapper mapper)
+        public HomeController(IAdService adService,ICompanyService companyService, IMapper mapper)
         {
             this.adService = adService;
+            this.companyService = companyService;
             this.mapper = mapper;
         }
 
@@ -34,17 +36,26 @@ namespace DevJobs.Web.Controllers
                 .Take(Constants.TopAdsCount)
                 .ToList()
                 .Select(x => this.mapper.Map<AdViewModel>(x));
-                
+
+            var companies = this.companyService
+                .GetAll()
+                .OrderByDescending(x => x.Rating)
+                .Take(Constants.TopCompaniesCount)
+                .ToList()
+                .Select(x => this.mapper.Map<CompanyViewModel>(x));
 
             var viewModel = new MainViewModel()
             {
                 Ads = ads.ToList(),
+                Companies = companies.ToList(),
             };
 
             var list = new List<string>() { "Sofia", "Plovdiv", "Burgas" };
             ViewBag.ChoiceList = new SelectList(list);
             var technologyList = new List<string>() { "ASP.NET", "Java EE", "Android", "Front-end", "MSSQL" };
             ViewBag.TechnologyList = new SelectList(technologyList);
+
+            
 
             return View(viewModel);
         }
