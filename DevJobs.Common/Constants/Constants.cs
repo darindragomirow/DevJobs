@@ -12,7 +12,7 @@ namespace DevJobs.Common.Constants
 
         public static int TopCompaniesCount = 5;
 
-        public const int DefaultPageSize = 10;
+        public const int DefaultPageSize = 5;
 
         public const int DefaultCacheDuration = 10;
 

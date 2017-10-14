@@ -10,6 +10,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
+using DevJobs.Common.Constants;
 
 namespace DevJobs.Web.Controllers
 {
@@ -24,7 +25,7 @@ namespace DevJobs.Web.Controllers
             this.cityService = cityService;
         }
         [HttpGet]
-        public ActionResult GetAll()
+        public ActionResult GetAll(int? page)
         {
             var ads = this.adService
                  .GetAll()
@@ -36,7 +37,11 @@ namespace DevJobs.Web.Controllers
                 Ads = ads,
             };
 
-            return this.View(viewModel);
+            int pageSize = Constants.DefaultPageSize;
+            int pageNumber = (page ?? 1);
+            return View(ads.ToPagedList(pageNumber, pageSize));
+
+            //return this.View(viewModel);
         }
 
         [HttpGet]
@@ -63,7 +68,7 @@ namespace DevJobs.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetFiltered(string searchTerm)
+        public ActionResult GetFiltered(string searchTerm, int? page)
         {
             string location = Request.Form["ChoiceList"].ToString();
 
@@ -79,7 +84,11 @@ namespace DevJobs.Web.Controllers
                 Ads = ads,
             };
 
-            return this.View(viewModel);
+            int pageSize = Constants.DefaultPageSize;
+            int pageNumber = (page ?? 1);
+            return View(ads.ToPagedList(pageNumber, pageSize));
+
+            //return this.View(viewModel);
         }
 
         [HttpGet]

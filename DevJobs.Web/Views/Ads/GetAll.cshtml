@@ -1,5 +1,7 @@
-﻿@using DevJobs.Web.Models
-@model MainViewModel
+﻿@*@using DevJobs.Web.Models
+@model MainViewModel*@
+@model PagedList.IPagedList<DevJobs.Web.Models.AdViewModel>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "GetAll";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -13,7 +15,7 @@
 
 <h2><strong>All active adverts</strong></h2>
 <span class="pull-right" id="adsToday">
-    @foreach (var x in Model.Ads)
+    @foreach (var x in Model)
     {
         if (x.CreatedOn.Day == currentDay)
         {
@@ -24,7 +26,7 @@
 </span>
 <br />
 
-@foreach (var ad in Model.Ads)
+@foreach (var ad in Model)
 {
     if ((index % 2 == 1))
     {
@@ -48,4 +50,10 @@
     }
     index++;
 }
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("GetAll",
+    new { page }))
 

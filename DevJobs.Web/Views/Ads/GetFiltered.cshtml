@@ -1,5 +1,7 @@
-﻿@using DevJobs.Web.Models
-@model MainViewModel
+﻿@*@using DevJobs.Web.Models
+@model MainViewModel*@
+@model PagedList.IPagedList<DevJobs.Web.Models.AdViewModel>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Search Result";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,7 +9,7 @@
 
 <h2><strong>Search results:</strong></h2>
 <br />
-@foreach (var ad in Model.Ads)
+@foreach (var ad in Model)
 {
     <a style="color:black" href='@Url.Action("GetDetails","Ads", new { ad.Id },null)'>
         <div class="ad">
@@ -17,4 +19,10 @@
         </div>
     </a>
 }
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("GetAll",
+    new { page }))
 
