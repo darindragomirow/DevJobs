@@ -15,13 +15,13 @@ namespace DevJobs.Web.Controllers
     public class HomeController : Controller
     {
         private readonly IAdService adService;
-        //private readonly IMapper mapper;
+        private readonly IMapper mapper;
 
 
-        public HomeController(IAdService adService)
+        public HomeController(IAdService adService, IMapper mapper)
         {
             this.adService = adService;
-            //this.mapper = mapper;
+            this.mapper = mapper;
         }
 
         
@@ -33,7 +33,7 @@ namespace DevJobs.Web.Controllers
                 .OrderByDescending(x=> x.CreatedOn.Value)
                 .Take(Constants.TopAdsCount)
                 .ToList()
-                .Select(x => Mapper.Map<AdViewModel>(x));
+                .Select(x => this.mapper.Map<AdViewModel>(x));
                 
 
             var viewModel = new MainViewModel()
