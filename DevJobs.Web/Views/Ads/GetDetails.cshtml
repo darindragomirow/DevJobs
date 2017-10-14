@@ -16,19 +16,24 @@
     <div class="row">
         <div class="col-md-4">
             <div class="jobOptions">
-                <div>Info</div>
-                <strong style="display:block;">CompanyName</strong>
-                <span>{Name}</span>
+                <div><h3>Info</h3></div>
+                <strong style="display:block;">Company</strong>
+                <span>@Model.CompanyName</span>
+                <br />
                 <strong style="display:block;">City</strong>
                 <span>@Model.City</span>
+                <br />
                 <strong style="display:block;">Technology</strong>
-                <span>{Type}</span>
+                <span>@Model.Technology</span>
+                <br />
                 <strong style="display:block;">Level</strong>
-                <span>{Type}</span>
+                <span>@Model.Level</span>
+                <br />
                 <strong style="display:block;">Added on</strong>
                 <span>@Model.CreatedOn</span>
+                <br />
                 <strong style="display:block;">Seen</strong>
-                <span>{Previews}</span>
+                <span>@Model.PreViews</span>
             </div>
         </div>
         <div class="col-md-6" style="display:inline-block;">

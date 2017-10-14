@@ -10,5 +10,7 @@ namespace DevJobs.Servicess.Contracts
     public interface ICityService
     {
         IQueryable<City> GetAll();
+
+        void Add(City city);
     }
 }

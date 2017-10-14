@@ -23,6 +23,10 @@ namespace DevJobs.Web.Models
 
         public string City { get; set; }
 
+        public string Technology { get; set; }
+
+        public string Level { get; set; }
+
         public int PreViews { get; set; }
 
         public void CreateMappings(IMapperConfigurationExpression configuration)
@@ -30,6 +34,9 @@ namespace DevJobs.Web.Models
             configuration.CreateMap<Advert, AdViewModel>()
                 .ForMember(adViewModel => adViewModel.Title, cfg => cfg.MapFrom(advert => advert.Title))
                 .ForMember(adViewModel => adViewModel.Description, cfg => cfg.MapFrom(advert => advert.Description))
+                .ForMember(adViewModel => adViewModel.Technology, cfg => cfg.MapFrom(advert => advert.Technology.Type))
+                .ForMember(adViewModel => adViewModel.Level, cfg => cfg.MapFrom(advert => advert.Level.Type))
+                .ForMember(adViewModel => adViewModel.CompanyName, cfg => cfg.MapFrom(advert => advert.Company.Name))
                 .ForMember(adViewModel => adViewModel.City, cfg => cfg.MapFrom(advert => advert.City.Name));
         }
     }

@@ -1,6 +1,7 @@
 namespace DevJobs.Data.Migrations
 {
     using DevJobs.Models;
+    using DevJobs.Models.Models;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using System;
@@ -92,6 +93,48 @@ namespace DevJobs.Data.Migrations
 
                 context.Countries.Add(country1);
                 context.Countries.Add(country2);
+            }
+
+            if (!context.Companies.Any())
+            {
+                Company company1 = new Company() { Name = "SAP" };
+                Company company2 = new Company() { Name = "Progress" };
+                Company company3 = new Company() { Name = "Telerik" };
+                Company company4 = new Company() { Name = "Accedia" };
+                Company company5 = new Company() { Name = "eCommera" };
+
+
+                context.Companies.Add(company1);
+                context.Companies.Add(company2);
+                context.Companies.Add(company3);
+                context.Companies.Add(company4);
+                context.Companies.Add(company5);
+            }
+
+            if (!context.Technologies.Any())
+            {
+                Technology technology1 = new Technology() { Type = "ASP.NET Developer" };
+                Technology technology2 = new Technology() { Type = "Java Developer" };
+                Technology technology3 = new Technology() { Type = "Quality Assurance" };
+                Technology technology4 = new Technology() { Type = "Front-end Developer" };
+                Technology technology5 = new Technology() { Type = "SQL Developer" };
+
+                context.Technologies.Add(technology1);
+                context.Technologies.Add(technology2);
+                context.Technologies.Add(technology3);
+                context.Technologies.Add(technology4);
+                context.Technologies.Add(technology5);
+            }
+
+            if (!context.Levels.Any())
+            {
+                Level level1 = new Level() { Type = "Junior" };
+                Level level2 = new Level() { Type = "Regular" };
+                Level level3 = new Level() { Type = "Senior" };
+
+                context.Levels.Add(level1);
+                context.Levels.Add(level2);
+                context.Levels.Add(level3);
             }
         }
     }

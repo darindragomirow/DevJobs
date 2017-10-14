@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DevJobs.Servicess
 {
-    public class TechnologyService : ITechnologyService
+    public class TechnologyService : IService, ITechnologyService
     {
         private readonly IEfRepository<Technology> technologyRepo;
         private readonly ISaveContext context;
@@ -26,6 +26,11 @@ namespace DevJobs.Servicess
             return this.technologyRepo.All;
         }
 
+        public void Add(Technology technology)
+        {
+            this.technologyRepo.Add(technology);
+            this.context.Commit();
+        }
         public void Update(Technology technology)
         {
             this.technologyRepo.Update(technology);

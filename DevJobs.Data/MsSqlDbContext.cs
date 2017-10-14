@@ -1,5 +1,6 @@
 ﻿using DevJobs.Models;
 using DevJobs.Models.Contracts;
+using DevJobs.Models.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,10 @@ namespace DevJobs.Data
         public IDbSet<Country> Countries { get; set; }  
         
         public IDbSet<Company> Companies { get; set; }
+
+        public IDbSet<Technology> Technologies { get; set; }
+
+        public IDbSet<Level> Levels { get; set; }
 
         public override int SaveChanges()
         {

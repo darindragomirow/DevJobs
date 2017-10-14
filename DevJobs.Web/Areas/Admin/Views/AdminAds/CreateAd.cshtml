@@ -23,24 +23,24 @@
                     <div class="form-group">
                         <label>Company</label>
                         <br />
-                        @Html.TextBoxFor(m => m.CompanyName)
+                        @Html.TextBoxFor(m => m.Company.Name)
                     </div>
                     <div class="form-group">
                         <label>Technology</label>
                         <br />
-                        @Html.TextBoxFor(m => m.Technology)
+                        @Html.TextBoxFor(m => m.Technology.Type)
                     </div>
                     <div class="form-group">
                         <label>Level</label>
                         <br />
                         @*@Html.DropDownListFor(,m => m.City)*@
-                        @Html.TextBoxFor(m => m.City)
+                        @Html.TextBoxFor(m => m.Level.Type)
                     </div>
                     <div class="form-group">
                         <label>City</label>
                         <br />
                         @*@Html.DropDownListFor(m => m.Level)>*@
-                        @Html.TextBoxFor(m => m.Level)
+                        @Html.TextBoxFor(m => m.City.Name)
                     </div>
                     </div>
                     <div class="col-md-4">

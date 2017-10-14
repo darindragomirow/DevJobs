@@ -10,5 +10,6 @@ namespace DevJobs.Servicess.Contracts
     public interface ILevelService
     {
         IQueryable<Level> GetAll();
+        void Add(Level newLevel);
     }
 }

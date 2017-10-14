@@ -10,5 +10,6 @@ namespace DevJobs.Servicess.Contracts
     public interface ICompanyService
     {
         IQueryable<Company> GetAll();
+        void Add(Company newCompany);
     }
 }

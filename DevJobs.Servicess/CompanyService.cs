@@ -10,7 +10,7 @@ using DevJobs.Data.SaveContext;
 
 namespace DevJobs.Servicess
 {
-    public class CompanyService : ICompanyService
+    public class CompanyService : IService, ICompanyService
     {
         private readonly IEfRepository<Company> companyRepo;
         private readonly ISaveContext context;
@@ -24,6 +24,12 @@ namespace DevJobs.Servicess
         public IQueryable<Company> GetAll()
         {
             return this.companyRepo.All;
+        }
+
+        public void Add(Company company)
+        {
+            this.companyRepo.Add(company);
+            context.Commit();
         }
 
         public void Update(Company company)

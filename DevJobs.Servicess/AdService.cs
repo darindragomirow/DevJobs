@@ -34,7 +34,10 @@ namespace DevJobs.Services
             //    .ProjectTo<AdViewModel>()
             //    .Where(x => x.Title.ToLower().Contains(searchTerm.ToLower()))
             //    .ToList();
-
+            if(searchTerm == "")
+            {
+                return this.adsRepo.All;
+            }
             return this.adsRepo.All.Where(x => x.Title.ToLower().Contains(searchTerm.ToLower()));
         }
 

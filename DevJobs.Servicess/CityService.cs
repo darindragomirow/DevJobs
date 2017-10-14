@@ -25,6 +25,12 @@ namespace DevJobs.Servicess
         {
             return this.cityRepo.All;
         }
+
+        public void Add(City city)
+        {
+            this.cityRepo.Add(city);
+            context.Commit();
+        }
         
         public void Update(City city)
         {

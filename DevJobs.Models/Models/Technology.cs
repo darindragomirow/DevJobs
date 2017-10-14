@@ -9,7 +9,7 @@ namespace DevJobs.Models.Models
 {
     public class Technology : DataModel
     {
-        public string Type { get; }
+        public string Type { get; set; }
 
         public ICollection<Advert> Adverts { get; set; }
     }

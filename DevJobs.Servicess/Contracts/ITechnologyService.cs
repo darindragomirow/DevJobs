@@ -10,5 +10,6 @@ namespace DevJobs.Servicess.Contracts
     public interface ITechnologyService
     {
         IQueryable<Technology> GetAll();
+        void Add(Technology newTechnology);
     }
 }

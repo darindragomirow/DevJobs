@@ -81,6 +81,14 @@
     <Compile Include="Migrations\201710121839577_AddedForeignKeysToModels.Designer.cs">
       <DependentUpon>201710121839577_AddedForeignKeysToModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710140839097_TechnologyTypeAccessFixed.cs" />
+    <Compile Include="Migrations\201710140839097_TechnologyTypeAccessFixed.Designer.cs">
+      <DependentUpon>201710140839097_TechnologyTypeAccessFixed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710140911431_SeedAdditionalData.cs" />
+    <Compile Include="Migrations\201710140911431_SeedAdditionalData.Designer.cs">
+      <DependentUpon>201710140911431_SeedAdditionalData.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MsSqlDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -120,6 +128,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710121839577_AddedForeignKeysToModels.resx">
       <DependentUpon>201710121839577_AddedForeignKeysToModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710140839097_TechnologyTypeAccessFixed.resx">
+      <DependentUpon>201710140839097_TechnologyTypeAccessFixed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710140911431_SeedAdditionalData.resx">
+      <DependentUpon>201710140911431_SeedAdditionalData.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DevJobs.Servicess
 {
-    public class LevelService : ILevelService
+    public class LevelService : IService, ILevelService
     {
         private readonly IEfRepository<Level> levelRepo;
         private readonly ISaveContext context;
@@ -26,6 +26,12 @@ namespace DevJobs.Servicess
             return this.levelRepo.All;
         }
 
+        public void Add(Level level)
+        {
+            this.levelRepo.Add(level);
+            this.context.Commit();
+        }
+            
         public void Update(Level level)
         {
             this.levelRepo.Update(level);
