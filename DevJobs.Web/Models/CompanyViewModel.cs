@@ -10,6 +10,8 @@ namespace DevJobs.Web.Models
 {
     public class CompanyViewModel : IMapFrom<Company>, IHaveCustomMappings
     {
+        public Guid Id { get; set; }
+
         public string Name { get; set; }
 
         public string Description { get; set; }

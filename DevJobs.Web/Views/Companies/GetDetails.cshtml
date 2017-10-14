@@ -1,0 +1,17 @@
+﻿@using DevJobs.Web.Models
+@model CompanyViewModel
+@{
+    ViewBag.Title = "GetDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>GetDetails</h2>
+
+<h3>@Model.Name</h3>
+@for (var i = 0; i < Model.Rating; i++)
+{
+    <span class="glyphicon glyphicon-star"></span>
+}
+<span>@Model.Rating</span>
+
+

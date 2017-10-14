@@ -1,7 +1,4 @@
-﻿body {
-}
-
-.navbar-inverse {
+﻿.navbar-inverse {
     background-color: #434195;
     border-color: #51579C;
 }
@@ -34,6 +31,22 @@
     border-bottom: 1px solid gray;
 }
 
+.adDescription {
+    color: red;
+    text-shadow: 1px 1px 1px black;
+}
+
+#adsToday{
+    font-size:16px;
+}
+
+#topCompanies {
+    z-index:111;
+    text-align: center;
+    color: black;
+    text-shadow: 2px 2px 4px white;
+}
+
 .topCompanies {
     background-color: #EFEFEF;
 }
@@ -63,7 +76,7 @@ select{
     font: large 16px 'Open Sans', Arial, Helvetica, sans-serif;
     cursor: pointer;
     box-shadow: 3px 3px 1px black;
-    margin-left:320px;
+    margin-left:330px;
     height:30px;
 }
 
@@ -115,7 +128,12 @@ textarea{
 
 .carousel-inner {
     height: 100%;
-    color:white;
+    color: white;
+    font-family: Georgia;
+}
+.text-center{
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
 }
 
 .item {
@@ -132,4 +150,8 @@ textarea{
     /*background-color: #3498DB;*/
     padding: 50px;
     margin-top: 100px;
+}
+
+.glyphicon-star{
+    color:rgba(22, 109, 246, 1);
 }

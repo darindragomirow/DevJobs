@@ -1,0 +1,45 @@
+﻿@using DevJobs.Web.Models
+@model MainViewModel
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var index = 1;
+}
+<h2><strong>All Companies</strong></h2>
+<br />
+
+@foreach (var cmp in Model.Companies)
+{
+    if ((index % 2 == 1))
+    {
+        <a style="color:black" href='@Url.Action("GetDetails", "Companies", new { cmp.Id }, null)'>
+            <div class="cmp" style="background-color:rgba(230, 224, 224, 0.70); padding:3px;">
+                <h3>@cmp.Name</h3>
+                @for (var i = 0; i < cmp.Rating; i++)
+                {
+                    <span class="glyphicon glyphicon-star"></span>
+                }
+                <span>@cmp.Rating</span>
+                
+            </div>
+        </a>
+    }
+    else
+    {
+        <a style="color:black" href='@Url.Action("GetDetails", "Companies", new { cmp.Id }, null)'>
+            <div class="cmo" style="padding:3px;">
+                <h3>@cmp.Name</h3>
+                @for (var i = 0; i < cmp.Rating; i++)
+                {
+                    <span class="glyphicon glyphicon-star"></span>
+                }
+                <span>@cmp.Rating</span>
+            </div>
+        </a>
+    }
+    index++;
+}
+

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace DevJobs.Web.Controllers
 {
@@ -23,14 +24,36 @@ namespace DevJobs.Web.Controllers
             this.cityService = cityService;
         }
         [HttpGet]
-        public ActionResult GetDetails(Guid id)
+        public ActionResult GetAll()
         {
             var ads = this.adService
+                 .GetAll()
+                 .ProjectTo<AdViewModel>()
+                 .ToList();
+
+            var viewModel = new MainViewModel()
+            {
+                Ads = ads,
+            };
+
+            return this.View(viewModel);
+        }
+
+        [HttpGet]
+        public ActionResult GetDetails(Guid id)
+        {
+            var ad = this.adService
                 .GetAll()
                 .ProjectTo<AdViewModel>()
                 .SingleOrDefault(x => x.Id == id);
 
-            return View(ads);
+            var adSeen = this.adService
+                .GetAll()
+                .SingleOrDefault(x => x.Id == id);
+
+            this.adService.AddPreview(adSeen);
+
+            return View(ad);
         }
 
         [HttpGet]
@@ -42,15 +65,11 @@ namespace DevJobs.Web.Controllers
         [HttpPost]
         public ActionResult GetFiltered(string searchTerm)
         {
-            string value = Request.Form["ChoiceList"].ToString();
-            ViewBag.SelectedValue = value;
-            //var ads = this.adService
-            //    .GetAll()
-            //    .ProjectTo<AdViewModel>()
-            //    .Where(x => x.Title.ToLower().Contains(searchTerm.ToLower()))
-            //    .ToList();
+            string location = Request.Form["ChoiceList"].ToString();
 
-            var ads = this.adService.GetFiltered(searchTerm)
+            string technology = Request.Form["TechnologyList"].ToString();
+            
+            var ads = this.adService.GetFiltered(searchTerm, location, technology)
                 .ProjectTo<AdViewModel>()
                 .ToList();
                 

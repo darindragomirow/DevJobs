@@ -50,9 +50,10 @@ namespace DevJobs.Web.Controllers
                 Companies = companies.ToList(),
             };
 
-            var list = new List<string>() { "Sofia", "Plovdiv", "Burgas" };
+            var list = new List<string>() { "Sofiq", "Plovdiv", "Burgas", "Varna", "Haskovo" };
             ViewBag.ChoiceList = new SelectList(list);
-            var technologyList = new List<string>() { "ASP.NET", "Java EE", "Android", "Front-end", "MSSQL" };
+            var technologyList = new List<string>() { "ASP.NET", "Java", "PHP", "Front-end", "SQL",
+            "JavaScript", "Quality Assurance"};
             ViewBag.TechnologyList = new SelectList(technologyList);
 
             

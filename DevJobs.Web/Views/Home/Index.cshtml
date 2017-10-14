@@ -4,32 +4,6 @@
 @{
     ViewBag.Title = "Home Page";
 }
-@*<div class="jumbotron">
-        <h1 class="text-center">DevJobs</h1>
-            <p class="text-center lead">DevJobs.bg is a free website for searching developer jobs in Bulgaria.</p>
-            <div class="searchForm">
-                @using (@Html.BeginForm("GetFiltered", "Ads", FormMethod.Post))
-                    {
-                    <ul>
-                        <li>
-                            <div class="lab">Key words</div>
-                            <input name="searchTerm" type="text" class="keyWords">
-                        </li>
-                        <li>
-                            <div class="lab">Location</div>
-                            @Html.DropDownList("ChoiceList")
-                        </li>
-                        <li>
-                            <div class="lab">Technology</div>
-                            @Html.DropDownList("TechnologyList")
-                        </li>
-                    </ul>
-                    <div class="searchButtonContainer">
-                        <input type="submit" class="searchButton" value="SEARCH">
-                    </div>
-                }
-            </div>
-    </div>*@
 
 <div class="container">
     <div class="row">
@@ -71,11 +45,11 @@
                             }
                         </div>
                     </div>
-                    <div class="item active" style="background-image: url('http://upload.wikimedia.org/wikipedia/commons/8/8e/Templo_Wat_Arun%2C_Bangkok%2C_Tailandia%2C_2013-08-22%2C_DD_37.jpg')">
+                    <div class="item active" style="background-image: url(../../Content/Images/background3.jpg)">
                     </div>
-                    <div class="item" style="background-image: url('http://upload.wikimedia.org/wikipedia/commons/a/a5/%D0%93%D0%BE%D1%81%D1%83%D0%B4%D0%B0%D1%80%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9_%D0%BC%D1%83%D0%B7%D0%B5%D0%B9_%E2%84%962.JPG')">
+                    <div class="item" style="background-image: url(../../Content/Images/background1.jpg)">
                     </div>
-                    <div class="item" style="background-image: url('http://upload.wikimedia.org/wikipedia/commons/c/ce/Unterzeichnung_des_Koalitionsvertrages_der_18._Wahlperiode_des_Bundestages_%28Martin_Rulsch%29_026.jpg')">
+                    <div class="item" style="background-image: url(../../Content/Images/background2.jpg)")">
                     </div>
                 </div>
             </div>

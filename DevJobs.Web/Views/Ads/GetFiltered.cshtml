@@ -1,12 +1,12 @@
 ﻿@using DevJobs.Web.Models
 @model MainViewModel
 @{
-    ViewBag.Title = "GetFiltered";
+    ViewBag.Title = "Search Result";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>GetFiltered</h2>
-@ViewBag.SelectedValue
+<h2><strong>Search results:</strong></h2>
+<br />
 @foreach (var ad in Model.Ads)
 {
     <a style="color:black" href='@Url.Action("GetDetails","Ads", new { ad.Id },null)'>

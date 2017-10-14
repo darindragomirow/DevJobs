@@ -1,9 +1,17 @@
 ﻿@using DevJobs.Web.Models
 @model MainViewModel
 
+<h3 id="topCompanies" class="text-center"><strong>Top Companies</strong></h3>
 @foreach (var x in Model.Companies)
 {
-    <div class="top-company">
-        <h3>@x.Name</h3>
-    </div>
+    <a href='@Url.Action("GetDetails", "Companies", new { x.Id }, null)'>
+        <div class="top-company">
+            <h3 class="text-center">@x.Name</h3>
+            @for (var i = 0; i < x.Rating; i++)
+            {
+                <span class="glyphicon glyphicon-star"></span>
+            }
+            <span>@x.Rating</span>
+        </div>
+    </a>
 }

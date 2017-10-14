@@ -1,0 +1,51 @@
+﻿@using DevJobs.Web.Models
+@model MainViewModel
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var index = 1;
+    var currentDay = DateTime.Now.Day;
+    var adsToday = 0;
+}
+
+<h2><strong>All active adverts</strong></h2>
+<span class="pull-right" id="adsToday">
+    @foreach (var x in Model.Ads)
+    {
+        if (x.CreatedOn.Day == currentDay)
+        {
+            adsToday++;
+        }
+    }
+    <strong>Adverts Today: @adsToday</strong>
+</span>
+<br />
+
+@foreach (var ad in Model.Ads)
+{
+    if ((index % 2 == 1))
+    {
+        <a style="color:black" href='@Url.Action("GetDetails", "Ads", new { ad.Id }, null)'>
+            <div class="ad" style="background-color:rgba(230, 224, 224, 0.70); padding:3px;">
+                <span class="pull-right">@ad.CreatedOn</span>
+                <h3>@ad.Title</h3>
+                <h6>@ad.City</h6>
+            </div>
+        </a>
+    }
+    else
+    {
+        <a style="color:black" href='@Url.Action("GetDetails", "Ads", new { ad.Id }, null)'>
+            <div class="ad" style="padding:3px;">
+                <span class="pull-right">@ad.CreatedOn</span>
+                <h3>@ad.Title</h3>
+                <h6>@ad.City</h6>
+            </div>
+        </a>
+    }
+    index++;
+}
+

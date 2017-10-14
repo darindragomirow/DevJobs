@@ -11,8 +11,10 @@ namespace DevJobs.Services.Contracts
     {
         IQueryable<Advert> GetAll();
 
-        IQueryable<Advert> GetFiltered(string searchTerm);
+        IQueryable<Advert> GetFiltered(string searchTerm, string location, string technology);
 
         void Add(Advert advert);
+
+        void AddPreview(Advert advert);
     }
 }

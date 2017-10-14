@@ -27,7 +27,7 @@ namespace DevJobs.Services
             return this.adsRepo.All;
         }
 
-        public IQueryable<Advert> GetFiltered(string searchTerm)
+        public IQueryable<Advert> GetFiltered(string searchTerm, string location, string technology)
         {
             //var ads = this.adService
             //    .GetAll()
@@ -36,14 +36,25 @@ namespace DevJobs.Services
             //    .ToList();
             if(searchTerm == "")
             {
-                return this.adsRepo.All;
+                return this.adsRepo.All
+                .Where(x=> x.Technology.Type.Equals(technology)
+                && x.City.Name.Equals(location));
             }
-            return this.adsRepo.All.Where(x => x.Title.ToLower().Contains(searchTerm.ToLower()));
+            return this.adsRepo.All
+                .Where(x => x.Title.ToLower().Contains(searchTerm.ToLower())
+                && x.Technology.Type.Equals(technology)
+                && x.City.Name.Equals(location));
         }
 
         public void Add(Advert ad)
         {
             this.adsRepo.Add(ad);
+            context.Commit();
+        }
+
+        public void AddPreview(Advert ad)
+        {
+            ad.PreViews++;
             context.Commit();
         }
 
