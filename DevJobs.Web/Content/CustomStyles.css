@@ -56,21 +56,28 @@ select{
 }
 
 .searchButton {
-    background: #31A611;
+    background: rgba(49, 166, 17, 0.70);
     color: white;
     border-radius: 3px;
     border: 1px;
     font: large 16px 'Open Sans', Arial, Helvetica, sans-serif;
     cursor: pointer;
     box-shadow: 3px 3px 1px black;
+    margin-left:320px;
+    height:30px;
 }
 
 .searchForm {
     margin-left: 100px;
 }
 
+.keyWords{
+    width:200px;
+    height:44px;
+}
+
 .searchForm li {
-    background: #2f315d;
+    background: rgba(47, 49, 93, 0.7);
     padding: 7px;
     color: white;
     display: inline-block;
@@ -95,3 +102,34 @@ textarea{
 /*.jobOptions div{
     margin-top:20px;
 }*/
+
+/*CAROUSEL STYLES*/
+#carousel-example-generic {
+    height: 500px;
+    width: 100%;
+}
+
+.carousel, .item, .active {
+    height: 100%;
+}
+
+.carousel-inner {
+    height: 100%;
+    color:white;
+}
+
+.item {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+
+.on-top-of-carousel {
+    z-index: 999;
+    position: absolute;
+    /*color: #fff;*/
+    /*background-color: #3498DB;*/
+    padding: 50px;
+    margin-top: 100px;
+}
