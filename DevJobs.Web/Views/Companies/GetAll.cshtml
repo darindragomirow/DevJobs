@@ -1,5 +1,5 @@
-﻿@using DevJobs.Web.Models
-@model MainViewModel
+﻿@model PagedList.IPagedList<DevJobs.Web.Models.CompanyViewModel>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "GetAll";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,7 +11,7 @@
 <h2><strong>All Companies</strong></h2>
 <br />
 
-@foreach (var cmp in Model.Companies)
+@foreach (var cmp in Model)
 {
     if ((index % 2 == 1))
     {
@@ -42,4 +42,10 @@
     }
     index++;
 }
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("GetAll",
+    new { page }))
 
