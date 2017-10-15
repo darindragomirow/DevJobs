@@ -14,7 +14,7 @@
         @*<h5>@ad.Title</h5>
         <br />*@
 
-        <a style="color:black" href='@Url.Action("GetDetails", "Ads", new { ad.Id }, null)'>
+        <a style="color:black" href='@Url.Action("GetDetails", "Ads", new { ad.Id, Area =""}, null)'>
             <div class="ad">
                 <span class="pull-right">@ad.CreatedOn</span>
                 <h3>@ad.Title</h3>
