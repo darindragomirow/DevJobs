@@ -98,10 +98,27 @@ namespace DevJobs.Data.Migrations
             if (!context.Companies.Any())
             {
                 Company company1 = new Company() { Name = "SAP" };
+                company1.Rating = 2;
+                company1.Description = "As the market leader in enterprise application software, SAP is at the center of today’s business and technology revolution. SAP helps you streamline your processes, giving you the ability to use live data to predict customer trends – live and in the moment. Across your entire business. When you run live, you run simple with SAP.";
                 Company company2 = new Company() { Name = "Progress" };
+                company2.Rating = 4;
+                company2.Description = "Progress has always delivered the platform and tools that organizations need to develop and deploy mission-critical business applications.  As the types of devices and types of interfaces on which applications run proliferate, the number of systems that need to be connected rises, and the amount of data that needs to be harnessed continues to skyrocket, organizations are looking for a modern platform that will enable them to quickly and easily develop and deliver tomorrow’s applications.";
                 Company company3 = new Company() { Name = "Telerik" };
+                company3.Rating = 5;
+                company3.Description = "Progress is committed to giving developers the tools they need to harness and master the technological evolution shaping our society and the world. From innovative approaches to native, web and hybrid development, to time-saving tooling and testing products, developers rely on the quality and dependability of Progress to create transformative experiences";
                 Company company4 = new Company() { Name = "Accedia" };
+                company4.Rating = 3;
+                company4.Description = "Accedia is a Professional IT Services company specializing in consulting, software development outsourcing and complex end-to-end solutions for both SMEs and large enterprises. Our customer base includes leading financial institutions and banks, Fortune 100 IT corporations, multinational telecoms, large logistics and utilities companies, as well as innovative technology startups.";
                 Company company5 = new Company() { Name = "eCommera" };
+                company5.Rating = 4;
+                company5.Description = "eCommera, Linked by Isobar, is a commerce specialist that combines strategic, technology and operational support to deliver rapid growth for global brands and retailers. We are passionate about retail and that permeates everything that we do - whether we are helping clients like Jimmy Choo develop an international strategy, working with Clarins to launch sites in over 25 markets, or putting our heads together with the team at Asda-Walmart to realise their next innovation.";
+                Company company6 = new Company() { Name = "VMWare" };
+                company6.Rating = 3;
+                company6.Description = "Accelerate your digital transformation through a software-defined approach to business and IT. The trusted platform provider of choice for more than 500,000 customers globally, VMware is the pioneer in virtualization and an innovator in cloud and business mobility. A proven leader, we allow you to run, manage, connect and secure applications across clouds and devices in a common operating environment, so you get both freedom and control.";
+                Company company7 = new Company() { Name = "Telus" };
+                company7.Rating = 1;
+                company7.Description = "TELUS International Europe is a premium multilingual contact center, BPO (business process outsourcing) and ITO (information technology outsourcing) provider, delivering high quality services since 2004. The company has 3,500 team members across seven delivery centers located in: Sofia and Plovdiv (Bulgaria); Bucharest and Craiova (Romania), as well as offices in Manchester and Cannock (England). TELUS International Europe offers contact center solutions, ITO and innovative customer service support for global customers in over 35+ languages. TELUS International Europe is a proud member of the TELUS International family.";
+
 
 
                 context.Companies.Add(company1);
@@ -109,6 +126,8 @@ namespace DevJobs.Data.Migrations
                 context.Companies.Add(company3);
                 context.Companies.Add(company4);
                 context.Companies.Add(company5);
+                context.Companies.Add(company6);
+                context.Companies.Add(company7);
             }
 
             if (!context.Technologies.Any())

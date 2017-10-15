@@ -1,17 +1,25 @@
 ﻿@using DevJobs.Web.Models
 @model CompanyViewModel
 @{
-    ViewBag.Title = "GetDetails";
+    ViewBag.Title = "About Company";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>GetDetails</h2>
-
-<h3>@Model.Name</h3>
-@for (var i = 0; i < Model.Rating; i++)
-{
-    <span class="glyphicon glyphicon-star"></span>
-}
-<span>@Model.Rating</span>
-
-
+<h2>About Company</h2>
+<div>
+    <h3 id="companyName" class="text-center companyName">@Model.Name</h3>
+    @if (Model.Description != null)
+    {
+        @Html.DisplayText(Model.Description)
+        <p>
+            <strong>@Model.Description</strong>
+        </p>
+            <br />
+    }
+    <h4>Rating</h4>
+    @for (var i = 0; i < Model.Rating; i++)
+    {
+        <span class="glyphicon glyphicon-star"></span>
+    }
+    <span>@Model.Rating</span>
+</div>
