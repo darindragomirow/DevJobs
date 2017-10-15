@@ -15,6 +15,14 @@
                     </a>
                 </li>
             }
+            else if (User.Identity.IsAuthenticated)
+            {
+                <li>
+                    <a href="/profile/profile" class="btn" id="adminButton" style="color:white;">
+                        <span class="glyphicon glyphicon-user" id="admin"></span> Profile
+                    </a>
+                </li>
+            }
             <li>
                 @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", new { area = "" }, htmlAttributes: new { title = "Manage" })
             </li>

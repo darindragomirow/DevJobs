@@ -90,31 +90,5 @@ namespace DevJobs.Web.Controllers
 
             //return this.View(viewModel);
         }
-
-        [HttpGet]
-        public ActionResult CreateAd()
-        {
-            return this.View();
-        }
-
-        [HttpPost]
-        public ActionResult CreateAd(AdViewModel model)
-        {
-            if (this.ModelState.IsValid)
-            {
-                model.CreatedOn = DateTime.Now;
-                model.Id = Guid.NewGuid();
-                
-                var ad = Mapper.Map<AdViewModel, Advert>(model);
-                var city = this.cityService.GetAll().Where(x => x.Name.Equals("Burgas")).SingleOrDefault();
-                ad.CityId = city.Id;
-
-                this.adService.Add(ad);
-
-                this.ModelState.Clear();
-            }
-
-            return this.View();
-        }
     }
 }

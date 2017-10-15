@@ -1,0 +1,25 @@
+﻿@using DevJobs.Web.Models
+@model MainViewModel
+@{
+    ViewBag.Title = "MyCandidatures";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("_ProfilePartial")
+<h3>Where have you applied for:</h3>
+<hr />
+<div class="col-md-8 col-xs-5">
+    @foreach (var ad in Model.Ads)
+    {
+        @*<h5>@ad.Title</h5>
+        <br />*@
+
+        <a style="color:black" href='@Url.Action("GetDetails", "Ads", new { ad.Id }, null)'>
+            <div class="ad">
+                <span class="pull-right">@ad.CreatedOn</span>
+                <h3>@ad.Title</h3>
+                <h6>@ad.City</h6>
+            </div>
+        </a>
+    }
+</div>

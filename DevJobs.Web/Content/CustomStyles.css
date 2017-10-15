@@ -154,3 +154,8 @@ textarea{
 .glyphicon-star{
     color:rgba(22, 109, 246, 1);
 }
+
+.currentUser{
+    display:inline-block;
+    color:blue;
+}
