@@ -22,12 +22,15 @@ namespace DevJobs.Web.Areas.Profile.Controllers
             this.mapper = mapper;
         }
 
-        // GET: Profile/Profile
+        [HttpGet]
+        [Authorize]
         public ActionResult Index()
         {
             return View();
         }
 
+        [HttpGet]
+        [Authorize]
         public ActionResult MyCandidatures()
         {
             var ads = this.adService
@@ -44,6 +47,7 @@ namespace DevJobs.Web.Areas.Profile.Controllers
             return this.View(viewModel);
         }
 
+        [Authorize]
         public ActionResult Apply(int id, string username)
         {
 
