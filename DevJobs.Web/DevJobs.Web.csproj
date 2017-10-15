@@ -260,6 +260,7 @@
     <Content Include="Areas\Profile\Views\Shared\_ProfilePartial.cshtml" />
     <Content Include="Areas\Profile\Views\Profile\Index.cshtml" />
     <Content Include="Areas\Profile\Views\Profile\MyCandidatures.cshtml" />
+    <Content Include="appveyor.yml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
