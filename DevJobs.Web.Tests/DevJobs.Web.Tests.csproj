@@ -105,6 +105,8 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfigTests.cs" />
     <Compile Include="App_Start\RoutesConfigTests.cs" />
+    <Compile Include="Areas\Admin\AdminControllerTests.cs" />
+    <Compile Include="Areas\Profile\ProfileControllerTests.cs" />
     <Compile Include="Controllers\AccountControllerTests.cs" />
     <Compile Include="Controllers\AdsControllerTests.cs" />
     <Compile Include="Controllers\CompaniesControllerTests.cs" />
@@ -138,6 +140,7 @@
       <Name>DevJobs.Web</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
