@@ -16,7 +16,6 @@ namespace DevJobs.Services.Tests
     [TestFixture]
     public class LevelServiceTests
     {
-
         [Test]
         public void GetAll_ShouldCallQueryAll()
         {
