@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DevJobs.Models.Abstracts
 {
-    public abstract class DataModel : IAuditable, IDeletable
+    public abstract class DataModel : IAuditable, IDeletable, IDataModel
     {
         public DataModel()
         {

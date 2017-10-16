@@ -20,15 +20,17 @@ namespace DevJobs.Web.Areas.Admin.Controllers
         private readonly ICompanyService companyService;
         private readonly ITechnologyService technologyService;
         private readonly ILevelService levelService;
+        private readonly IMapper mapper;
 
         public AdminAdsController(IAdService adService, ICityService cityService, ICompanyService companyService,
-            ITechnologyService technologyService, ILevelService levelService)
+            ITechnologyService technologyService, ILevelService levelService, IMapper mapper)
         {
             this.adService = adService;
             this.cityService = cityService;
             this.companyService = companyService;
             this.technologyService = technologyService;
             this.levelService = levelService;
+            this.mapper = mapper;
         }
 
         // GET: Admin/AdminAds
@@ -112,7 +114,8 @@ namespace DevJobs.Web.Areas.Admin.Controllers
                 }
 
                 //Mapping ViewModel to DbModel
-                var ad = Mapper.Map<CreateAdViewModel, Advert>(model);
+                //var ad = Mapper.Map<CreateAdViewModel, Advert>(model);
+                var ad = this.mapper.Map<CreateAdViewModel, Advert>(model);
                 
                 //Adding the mapped object to the repository
                 this.adService.Add(ad);

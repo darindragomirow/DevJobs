@@ -27,6 +27,11 @@ namespace DevJobs.Services
             return this.adsRepo.All;
         }
 
+        public IQueryable<Advert> GetAllAndDeleted()
+        {
+            return this.adsRepo.AllAndDeleted;
+        }
+
         public IQueryable<Advert> GetFiltered(string searchTerm, string location, string technology)
         {
             //var ads = this.adService

@@ -17,13 +17,13 @@ namespace DevJobs.Web.Controllers
     public class AdsController : Controller
     {
         private readonly IAdService adService;
-        private readonly ICityService cityService;
+        //private readonly ICityService cityService;
         private readonly IMapper mapper;
 
-        public AdsController(IAdService adService, ICityService cityService, IMapper mapper)
+        public AdsController(IAdService adService,/* ICityService cityService,*/ IMapper mapper)
         {
             this.adService = adService;
-            this.cityService = cityService;
+            //this.cityService = cityService;
             this.mapper = mapper;
         }
         [HttpGet]
