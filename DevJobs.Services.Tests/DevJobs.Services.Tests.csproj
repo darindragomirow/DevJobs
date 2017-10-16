@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdServiceTests.cs" />
+    <Compile Include="CompanyServiceTests.cs" />
     <Compile Include="Fakes\DataModel_Fake.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
