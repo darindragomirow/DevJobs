@@ -13,19 +13,19 @@ using System.Threading.Tasks;
 namespace DevJobs.Services.Tests
 {
     [TestFixture]
-    public class CompanyServiceTests
+    public class CityServiceTests
     {
         [Test]
         public void GetAll_ShouldCallQueryAll()
         {
             // Arrange
-            var repositoryMock = new Mock<IEfRepository<Company>>();
+            var repositoryMock = new Mock<IEfRepository<City>>();
             var saveContextMock = new Mock<ISaveContext>();
 
-            var companyService = new CompanyService(repositoryMock.Object, saveContextMock.Object);
+            var cityService = new CityService(repositoryMock.Object, saveContextMock.Object);
 
             // Act
-            var result = companyService.GetAll();
+            var result = cityService.GetAll();
 
             // Assert
             repositoryMock.Verify(x => x.All, Times.Once);
@@ -35,13 +35,13 @@ namespace DevJobs.Services.Tests
         public void GetAll_ShouldCallQueryAllAndDeleted()
         {
             // Arrange
-            var repositoryMock = new Mock<IEfRepository<Company>>();
+            var repositoryMock = new Mock<IEfRepository<City>>();
             var saveContextMock = new Mock<ISaveContext>();
 
-            var companyService = new CompanyService(repositoryMock.Object, saveContextMock.Object);
+            var cityService = new CityService(repositoryMock.Object, saveContextMock.Object);
 
             // Act
-            var result = companyService.GetAllAndDeleted();
+            var result = cityService.GetAllAndDeleted();
 
             // Assert
             repositoryMock.Verify(x => x.AllAndDeleted, Times.Once);
@@ -52,66 +52,61 @@ namespace DevJobs.Services.Tests
         public void Add_ShouldCallRepoAdd()
         {
             // Arrange
-            var repositoryMock = new Mock<IEfRepository<Company>>();
+            var repositoryMock = new Mock<IEfRepository<City>>();
             var saveContextMock = new Mock<ISaveContext>();
-            Company company = new Company()
+            City city = new City()
             {
                 Name = "test",
-                Description = "test"
             };
 
-            var companyService = new CompanyService(repositoryMock.Object, saveContextMock.Object);
+            var cityService = new CityService(repositoryMock.Object, saveContextMock.Object);
 
             // Act
-            companyService.Add(company);
+            cityService.Add(city);
 
             // Assert
-            repositoryMock.Verify(x => x.Add(It.IsAny<Company>()), Times.Once);
+            repositoryMock.Verify(x => x.Add(It.IsAny<City>()), Times.Once);
         }
 
         [Test]
         public void Add_ShouldCallRepoAdd_AndCreateAddWithCorrectParameters()
         {
             // Arrange
-            var repositoryMock = new Mock<IEfRepository<Company>>();
+            var repositoryMock = new Mock<IEfRepository<City>>();
             var saveContextMock = new Mock<ISaveContext>();
-            Company company = new Company()
+            City city = new City()
             {
                 Name = "test",
-                Description = "test"
             };
 
-            var companyService = new CompanyService(repositoryMock.Object, saveContextMock.Object);
+            var cityService = new CityService(repositoryMock.Object, saveContextMock.Object);
 
             // Act
-            companyService.Add(company);
+            cityService.Add(city);
 
             // Assert
-            repositoryMock.Verify(x => x.Add(It.Is<Company>(a =>
-                a.Name == "test" &&
-                a.Description == "test")), Times.Once);
+            repositoryMock.Verify(x => x.Add(It.Is<City>
+                (a => a.Name == "test" )), Times.Once);
         }
 
         [Test]
         public void Update_ShouldCallRepoUpdate()
         {
             // Arrange
-            var repositoryMock = new Mock<IEfRepository<Company>>();
+            var repositoryMock = new Mock<IEfRepository<City>>();
             var saveContextMock = new Mock<ISaveContext>();
-            Company company = new Company()
+            City city = new City()
             {
                 Name = "test",
-                Description = "test"
             };
 
-            var companyService = new CompanyService(repositoryMock.Object, saveContextMock.Object);
+            var cityService = new CityService(repositoryMock.Object, saveContextMock.Object);
 
             // Act
-            companyService.Update(company);
+            cityService.Update(city);
 
             // Assert
-            repositoryMock.Verify(x => x.Update(It.IsAny<Company>()), Times.Once);
+            repositoryMock.Verify(x => x.Update(It.IsAny<City>()), Times.Once);
         }
-
     }
 }
