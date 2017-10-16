@@ -112,6 +112,5 @@ namespace DevJobs.Services.Tests
             // Assert
             repositoryMock.Verify(x => x.Update(It.IsAny<Company>()), Times.Once);
         }
-
     }
 }

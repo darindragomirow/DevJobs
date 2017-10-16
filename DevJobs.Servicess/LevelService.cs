@@ -26,6 +26,11 @@ namespace DevJobs.Servicess
             return this.levelRepo.All;
         }
 
+        public IQueryable<Level> GetAllAndDeleted()
+        {
+            return this.levelRepo.AllAndDeleted;
+        }
+
         public void Add(Level level)
         {
             this.levelRepo.Add(level);
