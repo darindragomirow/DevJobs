@@ -26,6 +26,14 @@ namespace DevJobs.Servicess
             return this.companyRepo.All;
         }
 
+
+        public IQueryable<Company> GetAllAndDeleted()
+        {
+            return this.companyRepo.AllAndDeleted;
+        }
+
+
+
         public void Add(Company company)
         {
             this.companyRepo.Add(company);
@@ -37,6 +45,5 @@ namespace DevJobs.Servicess
             this.companyRepo.Update(company);
             this.context.Commit();
         }
-        
     }
 }

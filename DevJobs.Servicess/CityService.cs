@@ -26,6 +26,11 @@ namespace DevJobs.Servicess
             return this.cityRepo.All;
         }
 
+        public IQueryable<City> GetAllAndDeleted()
+        {
+            return this.cityRepo.AllAndDeleted;
+        }
+
         public void Add(City city)
         {
             this.cityRepo.Add(city);
