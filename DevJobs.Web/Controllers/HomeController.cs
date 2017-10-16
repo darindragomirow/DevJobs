@@ -19,6 +19,8 @@ namespace DevJobs.Web.Controllers
         private readonly IMapper mapper;
         private readonly ICompanyService companyService;
 
+        public HomeController() { }
+
         public HomeController(IAdService adService,ICompanyService companyService, IMapper mapper)
         {
             this.adService = adService;
@@ -75,21 +77,21 @@ namespace DevJobs.Web.Controllers
             return View();
         }
         
-        [HttpPost]
-        public ActionResult GetFiltered(string searchTerm)
-        {
-            var ads = this.adService
-                .GetAll()
-                .ProjectTo<AdViewModel>()
-                .Where(x => x.Title.ToLower().Contains(searchTerm.ToLower()))
-                .ToList();
+        //[HttpPost]
+        //public ActionResult GetFiltered(string searchTerm)
+        //{
+        //    var ads = this.adService
+        //        .GetAll()
+        //        .ProjectTo<AdViewModel>()
+        //        .Where(x => x.Title.ToLower().Contains(searchTerm.ToLower()))
+        //        .ToList();
 
-            var viewModel = new MainViewModel()
-            {
-                Ads = ads,
-            };
+        //    var viewModel = new MainViewModel()
+        //    {
+        //        Ads = ads,
+        //    };
 
-            return this.View(viewModel);
-        }
+        //    return this.View(viewModel);
+        //}
     }
 }
