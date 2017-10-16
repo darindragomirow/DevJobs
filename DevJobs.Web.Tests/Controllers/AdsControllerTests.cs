@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using DevJobs.Models;
 using DevJobs.Services.Contracts;
 using DevJobs.Servicess.Contracts;
 using DevJobs.Web.Controllers;
+using DevJobs.Web.Models;
 using Moq;
 using NUnit.Framework;
 using System;
@@ -21,14 +23,14 @@ namespace DevJobs.Web.Tests.Controllers
         {
             //Arrange
             var adServiceMock = new Mock<IAdService>();
-            var cityServiceMock = new Mock<ICityService>();
+            //var cityServiceMock = new Mock<ICityService>();
             var mapper = new Mock<IMapper>();
             int page = 1;
 
             var controller = new AdsController
                 (
                 adServiceMock.Object,
-                cityServiceMock.Object,
+                //cityServiceMock.Object,
                 mapper.Object
                 );
 
@@ -44,14 +46,14 @@ namespace DevJobs.Web.Tests.Controllers
         {
             //Arrange
             var adServiceMock = new Mock<IAdService>();
-            var cityServiceMock = new Mock<ICityService>();
+            //var cityServiceMock = new Mock<ICityService>();
             var mapper = new Mock<IMapper>();
             Guid id = Guid.NewGuid();
 
             var controller = new AdsController
                 (
                 adServiceMock.Object,
-                cityServiceMock.Object,
+                //cityServiceMock.Object,
                 mapper.Object
                 );
 
@@ -67,14 +69,14 @@ namespace DevJobs.Web.Tests.Controllers
         {
             //Arrange
             var adServiceMock = new Mock<IAdService>();
-            var cityServiceMock = new Mock<ICityService>();
+            //var cityServiceMock = new Mock<ICityService>();
             var mapper = new Mock<IMapper>();
             Guid id = Guid.NewGuid();
 
             var controller = new AdsController
                 (
                 adServiceMock.Object,
-                cityServiceMock.Object,
+                //cityServiceMock.Object,
                 mapper.Object
                 );
 
@@ -83,6 +85,41 @@ namespace DevJobs.Web.Tests.Controllers
 
             //Assert
             Assert.IsNotNull(result);
+        }
+
+        [Test]
+        public void GetAll_ShouldReturnAllAsignAllAdsReturnedFromService()
+        {
+            // Arrange
+            var ads = new Advert[]
+            {
+                new Advert { Id = Guid.NewGuid() },
+                new Advert { Id = Guid.NewGuid() }
+            };
+            int page = 1;
+
+            var adServiceMock = new Mock<IAdService>();
+            adServiceMock
+                .Setup(x => x.GetAll())
+                .Returns(ads.AsQueryable());
+
+            
+
+            var mapperMock = new Mock<IMapper>();
+            mapperMock
+                .Setup(x => x.Map<AdViewModel>(It.IsAny<Advert>()))
+                .Returns<Advert>(x => new AdViewModel { Id = x.Id });
+
+            var controller = new AdsController(
+                adServiceMock.Object,
+                mapperMock.Object);
+
+            // Act
+            var result = ((controller.GetAll(page) as ViewResult).Model as IEnumerable<AdViewModel>);
+
+            // Assert
+            Assert.AreEqual(2, result.Count());
+            Assert.AreEqual(result.First().Id, ads.First().Id);
         }
     }
 }
