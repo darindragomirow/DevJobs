@@ -26,6 +26,11 @@ namespace DevJobs.Servicess
             return this.technologyRepo.All;
         }
 
+        public IQueryable<Technology> GetAllAndDeleted()
+        {
+            return this.technologyRepo.AllAndDeleted;
+        }
+
         public void Add(Technology technology)
         {
             this.technologyRepo.Add(technology);
