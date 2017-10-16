@@ -20,6 +20,8 @@ namespace DevJobs.Web.App_Start
     using DevJobs.Services.Contracts;
     using DevJobs.Services;
     using DevJobs.Servicess;
+    using DevJobs.Web.Contracts;
+    using DevJobs.Web.Contracts.Identity;
 
     public static class NinjectWebCommon
     {
@@ -93,6 +95,8 @@ namespace DevJobs.Web.App_Start
             kernel.Bind(typeof(DbContext), typeof(MsSqlDbContext)).To<MsSqlDbContext>().InRequestScope();
             kernel.Bind<ISaveContext>().To<SaveContext>();
             kernel.Bind<IMapper>().ToMethod(x => Mapper.Instance);
+            kernel.Bind<IApplicationSignInManager>().To<ApplicationSignInManager>().InRequestScope();
+            kernel.Bind<IApplicationUserManager>().To<ApplicationUserManager>().InRequestScope();
             //kernel.Bind<IMapper>().To<Mapper>().InSingletonScope();
             //kernel.Bind<IAdService>().To<AdService>().InSingletonScope();
             //kernel.Bind<ICityService>().To<CityService>().InSingletonScope();

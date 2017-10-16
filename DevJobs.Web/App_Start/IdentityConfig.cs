@@ -13,6 +13,8 @@ using Microsoft.Owin.Security;
 using DevJobs.Web.Models;
 using DevJobs.Models;
 using DevJobs.Data;
+using DevJobs.Web.Contracts;
+using DevJobs.Web.Contracts.Identity;
 
 namespace DevJobs.Web
 {
@@ -35,7 +37,7 @@ namespace DevJobs.Web
     }
 
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
-    public class ApplicationUserManager : UserManager<User>
+    public class ApplicationUserManager : UserManager<User>, IApplicationUserManager
     {
         public ApplicationUserManager(IUserStore<User> store)
             : base(store)
@@ -91,7 +93,7 @@ namespace DevJobs.Web
     }
 
     // Configure the application sign-in manager which is used in this application.
-    public class ApplicationSignInManager : SignInManager<User, string>
+    public class ApplicationSignInManager : SignInManager<User, string>, IApplicationSignInManager
     {
         public ApplicationSignInManager(ApplicationUserManager userManager, IAuthenticationManager authenticationManager)
             : base(userManager, authenticationManager)

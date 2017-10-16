@@ -220,6 +220,8 @@
     <Compile Include="Areas\Admin\Models\CreateAdViewModel.cs" />
     <Compile Include="Areas\Profile\Controllers\ProfileController.cs" />
     <Compile Include="Areas\Profile\ProfileAreaRegistration.cs" />
+    <Compile Include="Contracts\Identity\IApplicationSignInManager.cs" />
+    <Compile Include="Contracts\Identity\IApplicationUserManager.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdsController.cs" />
     <Compile Include="Controllers\CompaniesController.cs" />
@@ -228,6 +230,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Identity\ApplicationSignInManager.cs" />
+    <Compile Include="Identity\ApplicatonUserManager.cs" />
     <Compile Include="Infrastructure\IHaveCustomMappings.cs" />
     <Compile Include="Infrastructure\IMapFrom.cs" />
     <Compile Include="Infrastructure\QueryableExtensions.cs" />
@@ -244,6 +248,10 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\CustomStyles.css" />
+    <Content Include="Content\Images\background1.jpg" />
+    <Content Include="Content\Images\background2.jpg" />
+    <Content Include="Content\Images\background3.jpg" />
+    <Content Include="Content\Images\company-logo.gif" />
     <Content Include="Content\Images\vmware_cloud_logo.jpg" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
@@ -260,6 +268,9 @@
     <Content Include="Areas\Profile\Views\Shared\_ProfilePartial.cshtml" />
     <Content Include="Areas\Profile\Views\Profile\Index.cshtml" />
     <Content Include="Areas\Profile\Views\Profile\MyCandidatures.cshtml" />
+    <Content Include="appveyor.yml" />
+    <None Include="Properties\PublishProfiles\devjobsbg - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\devjobsbg - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

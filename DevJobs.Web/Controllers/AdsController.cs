@@ -18,28 +18,35 @@ namespace DevJobs.Web.Controllers
     {
         private readonly IAdService adService;
         private readonly ICityService cityService;
+        private readonly IMapper mapper;
 
-        public AdsController(IAdService adService, ICityService cityService)
+        public AdsController(IAdService adService, ICityService cityService, IMapper mapper)
         {
             this.adService = adService;
             this.cityService = cityService;
+            this.mapper = mapper;
         }
         [HttpGet]
         public ActionResult GetAll(int? page)
         {
+            //var ads = this.adService
+            //     .GetAll()
+            //     .ProjectTo<AdViewModel>()
+            //     .ToList();
+
             var ads = this.adService
                  .GetAll()
-                 .ProjectTo<AdViewModel>()
-                 .ToList();
+                 .ToList()
+                 .Select(x => this.mapper.Map<AdViewModel>(x));
 
             var viewModel = new MainViewModel()
             {
-                Ads = ads,
+                Ads = ads.ToList(),
             };
 
             int pageSize = Constants.DefaultPageSize;
             int pageNumber = (page ?? 1);
-            return View(ads.ToPagedList(pageNumber, pageSize));
+            return this.View(ads.ToPagedList(pageNumber, pageSize));
 
             //return this.View(viewModel);
         }
@@ -47,10 +54,16 @@ namespace DevJobs.Web.Controllers
         [HttpGet]
         public ActionResult GetDetails(Guid id)
         {
+            //var ad = this.adService
+            //    .GetAll()
+            //    .ProjectTo<AdViewModel>()
+            //    .SingleOrDefault(x => x.Id == id);
+
             var ad = this.adService
-                .GetAll()
-                .ProjectTo<AdViewModel>()
-                .SingleOrDefault(x => x.Id == id);
+                 .GetAll()
+                 .ToList()
+                 .Select(x => this.mapper.Map<AdViewModel>(x))
+                 .SingleOrDefault(x => x.Id == id);
 
             var adSeen = this.adService
                 .GetAll()

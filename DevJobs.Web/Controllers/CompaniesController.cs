@@ -26,14 +26,19 @@ namespace DevJobs.Web.Controllers
         // GET: Companies
         public ActionResult GetAll(int? page)
         {
+            //var companies = this.companyService
+            //     .GetAll()
+            //     .ProjectTo<CompanyViewModel>()
+            //     .ToList();
+
             var companies = this.companyService
-                 .GetAll()
-                 .ProjectTo<CompanyViewModel>()
-                 .ToList();
+                .GetAll()
+                .ToList()
+                .Select(x => this.mapper.Map<CompanyViewModel>(x));
 
             var viewModel = new MainViewModel()
             {
-                Companies = companies,
+                Companies = companies.ToList(),
             };
 
             int pageSize = Constants.DefaultPageSize;
@@ -46,9 +51,15 @@ namespace DevJobs.Web.Controllers
         [HttpGet]
         public ActionResult GetDetails(Guid id)
         {
+            //var company = this.companyService
+            //    .GetAll()
+            //    .ProjectTo<CompanyViewModel>()
+            //    .SingleOrDefault(x => x.Id == id);
+
             var company = this.companyService
                 .GetAll()
-                .ProjectTo<CompanyViewModel>()
+                .ToList()
+                .Select(x => this.mapper.Map<CompanyViewModel>(x))
                 .SingleOrDefault(x => x.Id == id);
 
             return View(company);
