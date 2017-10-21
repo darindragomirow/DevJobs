@@ -1,0 +1,29 @@
+image: Visual Studio 2017
+
+branches:
+  only:
+    - master
+
+cache:
+  -packages -> **\packages.config
+
+before_build:
+  - nuget restore DevJobs.sln
+
+configuration: Release
+
+build:
+  project: DevJobs.sln
+  verbosity: quiet
+  publish_wap: true
+
+test_script:
+  - ps: >-
+      packages\OpenCover.4.6.519\tools\OpenCover.Console.exe
+      -register:user
+      -target:"packages\NUnit.ConsoleRunner.3.7.0\tools\nunit3-console.exe"
+      -targetargs:"$(ls -r *\bin\$configuration\*.Tests.dll | % FullName)"
+      -filter:"+[DevJobs*]* -[DevJobs*.Tests]* -[DevJobs.Data]*"
+      -output:".\coverage.xml"
+  - ps: packages\Codecov.1.0.3\tools\codecov.exe -f ".\coverage.xml"
+
