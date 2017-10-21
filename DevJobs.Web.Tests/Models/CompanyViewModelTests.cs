@@ -1,4 +1,7 @@
-﻿using DevJobs.Web.Models;
+﻿using AutoMapper;
+using AutoMapper.Configuration;
+using DevJobs.Web.Models;
+using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -19,6 +22,8 @@ namespace DevJobs.Web.Tests.Models
             var name = "test";
             var description = "test";
             var rating = 5;
+            var mapperConfiguration = new MapperConfigurationExpression();
+
 
             var companyViewModel = new CompanyViewModel()
             {
@@ -27,7 +32,7 @@ namespace DevJobs.Web.Tests.Models
                 Description = description,
                 Rating = rating,
             };
-
+            companyViewModel.CreateMappings(mapperConfiguration);
             //Act & Assert
             Assert.AreEqual(companyViewModel.Id, id);
             Assert.AreEqual(companyViewModel.Name, name);

@@ -1,4 +1,7 @@
-﻿using DevJobs.Web.Models;
+﻿using AutoMapper;
+using AutoMapper.Configuration;
+using DevJobs.Web.Models;
+using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -24,6 +27,7 @@ namespace DevJobs.Web.Tests.Models
             var technology = ".NET";
             var level = "Junior";
             var preViews = 5;
+            var mapperConfiguration = new MapperConfigurationExpression();
             var adModel = new AdViewModel()
             {
                 Id = id,
@@ -36,6 +40,7 @@ namespace DevJobs.Web.Tests.Models
                 Level = level,
                 PreViews = preViews,
             };
+            adModel.CreateMappings(mapperConfiguration);
             //Act & Assert
             Assert.AreEqual(adModel.Id, id);
             Assert.AreEqual(adModel.Title, title);

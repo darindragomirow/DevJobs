@@ -68,6 +68,25 @@ namespace DevJobs.Services.Tests
         }
 
         [Test]
+        public void GetFiltered_ShouldCallQueryAllIfThereIsSearchTerm()
+        {
+            // Arrange
+            var repositoryMock = new Mock<IEfRepository<Advert>>();
+            var saveContextMock = new Mock<ISaveContext>();
+            string searchTerm = "test";
+            string location = "Sofiq";
+            string technology = "ASP.NET";
+
+            var adService = new AdService(repositoryMock.Object, saveContextMock.Object);
+
+            // Act
+            var result = adService.GetFiltered(searchTerm, location, technology);
+
+            // Assert
+            repositoryMock.Verify(x => x.All, Times.Once);
+        }
+
+        [Test]
         public void Add_ShouldCallRepoAdd()
         {
             // Arrange
@@ -130,6 +149,34 @@ namespace DevJobs.Services.Tests
 
             // Assert
             repositoryMock.Verify(x => x.Update(It.IsAny<Advert>()), Times.Once);
+        }
+
+        [Test]
+        public void AddPreview_ShouldIncrementGivenAdPreviews()
+        {
+            // Arrange
+            var repositoryMock = new Mock<IEfRepository<Advert>>();
+            var saveContextMock = new Mock<ISaveContext>();
+            var ad = new Advert()
+            {
+                Title = "test",
+                Description = "test",
+                PreViews = 5,
+                Salary = 500,
+                City = new City(),
+                Country = new Country() { Name = "Bulgaria", Adverts = new List<Advert>() },
+                Company = new Company(),
+                Technology = new Models.Models.Technology(),
+                Level = new Models.Models.Level(),
+            };
+
+            var adService = new AdService(repositoryMock.Object, saveContextMock.Object);
+
+            // Act
+            adService.AddPreview(ad);
+
+            // Assert
+            Assert.AreEqual(ad.PreViews, 6);
         }
     }
 }
