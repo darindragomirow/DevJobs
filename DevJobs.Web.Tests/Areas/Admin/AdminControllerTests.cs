@@ -105,16 +105,16 @@ namespace DevJobs.Web.Tests.Areas.Admin
             var contextMock = new Mock<ControllerContext>();
             contextMock.Setup(x => x.HttpContext).Returns(httpContext.Object);
 
-            
+
 
             var model = new CreateAdViewModel
             {
                 Title = "title",
                 Description = "info",
                 City = new City() { Name = "Sofiq" },
-                Technology = new Technology { Type = ".NET"},
+                Technology = new Technology { Type = ".NET" },
                 Level = new Level() { Type = "Junior" },
-                Company = new Company() { Name = "Telerik" },
+                Company = new Company() { Name = "Telerik", Rating = 5, Country = new Country(), CountryId = Guid.NewGuid(), City = new City(), CityId = Guid.NewGuid() },
             };
 
             // Act

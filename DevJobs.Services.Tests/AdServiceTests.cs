@@ -164,10 +164,19 @@ namespace DevJobs.Services.Tests
                 PreViews = 5,
                 Salary = 500,
                 City = new City(),
+                CityId = Guid.NewGuid(),
+                CountryId = Guid.NewGuid(),
                 Country = new Country() { Name = "Bulgaria", Adverts = new List<Advert>() },
                 Company = new Company(),
+                CompanyId = Guid.NewGuid(),
                 Technology = new Models.Models.Technology(),
+                TechnologyId = Guid.NewGuid(),
                 Level = new Models.Models.Level(),
+                LevelId = Guid.NewGuid(),
+                IsDeleted = false,
+                CreatedOn = DateTime.Now,
+                ModifiedOn = DateTime.Now,
+                DeletedOn = DateTime.Now,
             };
 
             var adService = new AdService(repositoryMock.Object, saveContextMock.Object);
