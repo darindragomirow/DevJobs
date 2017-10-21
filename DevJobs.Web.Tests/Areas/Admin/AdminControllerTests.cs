@@ -78,7 +78,7 @@ namespace DevJobs.Web.Tests.Areas.Admin
         }
 
         [Test]
-        public void CreateAd_ShouldCallAdServiceAddWhenModelPropertiesExist()
+        public void CreateAd_ShouldCallAdServiceAdd()
         {
             // Arrange
             var adServiceMock = new Mock<IAdService>();
@@ -102,6 +102,37 @@ namespace DevJobs.Web.Tests.Areas.Admin
             //httpContext.Setup(x => x.User).Returns(principalMock.Object);
             var contextMock = new Mock<ControllerContext>();
             contextMock.Setup(x => x.HttpContext).Returns(httpContext.Object);
+
+            
+
+            var model = new CreateAdViewModel
+            {
+                Title = "title",
+                Description = "info",
+                City = new City() { Name = "Sofiq" },
+                Technology = new Technology { Type = ".NET"},
+                Level = new Level() { Type = "Junior" },
+                Company = new Company() { Name = "Telerik" },
+            };
+
+            // Act
+            var result = controller.CreateAd(model);
+
+            // Assert
+            adServiceMock.Verify(x => x.Add(It.IsAny<Advert>()));
+        }
+
+
+        [Test]
+        public void CreateAd_ShouldCallAdServiceAddWhenModelPropertiesExist()
+        {
+            // Arrange
+            var adServiceMock = new Mock<IAdService>();
+            var cityServiceMock = new Mock<ICityService>();
+            var companyServiceMock = new Mock<ICompanyService>();
+            var technologyServiceMock = new Mock<ITechnologyService>();
+            var levelServiceMock = new Mock<ILevelService>();
+            var mapper = new Mock<IMapper>();
 
             var cities = new City[]
            {
@@ -136,15 +167,33 @@ namespace DevJobs.Web.Tests.Areas.Admin
                 .Returns(levels.AsQueryable());
 
 
+
             var model = new CreateAdViewModel
             {
                 Title = "title",
                 Description = "info",
-                City = new City() { Name = "Sofiq"},
-                Company = new Company() { Name = "Telerik"},
-                Level = new Level() { Type = "Junior"},
-                Technology = new Technology() { Type = ".NET"}
+                City = new City() { Name = "Sofiq" },
+                Technology = new Technology { Type = ".NET" },
+                Level = new Level() { Type = "Junior" },
+                Company = new Company() { Name = "Telerik" },
             };
+
+            var controller = new AdminAdsController
+                (
+                    adServiceMock.Object,
+                    cityServiceMock.Object,
+                    companyServiceMock.Object,
+                    technologyServiceMock.Object,
+                    levelServiceMock.Object,
+                    mapper.Object
+                );
+
+            var httpContext = new Mock<HttpContextBase>();
+            //httpContext.Setup(x => x.User).Returns(principalMock.Object);
+            var contextMock = new Mock<ControllerContext>();
+            contextMock.Setup(x => x.HttpContext).Returns(httpContext.Object);
+
+            
 
             // Act
             var result = controller.CreateAd(model);
