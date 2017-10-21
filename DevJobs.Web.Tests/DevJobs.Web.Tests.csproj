@@ -125,9 +125,6 @@
     <Content Include="Properties\Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <None Include="_RunCodeCoverageInOutput.bat">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DevJobs.Models\DevJobs.Data.Model.csproj">
