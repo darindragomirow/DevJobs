@@ -3,6 +3,7 @@ using DevJobs.Models;
 using DevJobs.Models.Models;
 using DevJobs.Services.Contracts;
 using DevJobs.Servicess.Contracts;
+using DevJobs.Web.Areas.Admin;
 using DevJobs.Web.Areas.Admin.Controllers;
 using DevJobs.Web.Areas.Admin.Models;
 using DevJobs.Web.Models;
@@ -15,6 +16,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace DevJobs.Web.Tests.Areas.Admin
 {
@@ -200,6 +202,29 @@ namespace DevJobs.Web.Tests.Areas.Admin
 
             // Assert
             adServiceMock.Verify(x => x.Add(It.IsAny<Advert>()));
+        }
+
+        [Test]
+        public void TestAdminAreaRoute()
+        {
+            var routes = new RouteCollection();
+
+            // Get my AreaRegistration class
+            var areaRegistration = new AdminAreaRegistration();
+            Assert.AreEqual("Admin", areaRegistration.AreaName);
+
+            // Get an AreaRegistrationContext for my class. Give it an empty RouteCollection
+            var areaRegistrationContext = new AreaRegistrationContext(areaRegistration.AreaName, routes);
+            areaRegistration.RegisterArea(areaRegistrationContext);
+
+            // Mock up an HttpContext object with my test path (using Moq)
+            var context = new Mock<HttpContextBase>();
+            context.Setup(c => c.Request.AppRelativeCurrentExecutionFilePath).Returns("~/Admin");
+
+            // Get the RouteData based on the HttpContext
+            var routeData = routes.GetRouteData(context.Object);
+
+            Assert.IsTrue(true);
         }
     }
 }

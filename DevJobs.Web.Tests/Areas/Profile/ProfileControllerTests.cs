@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DevJobs.Services.Contracts;
+using DevJobs.Web.Areas.Profile;
 using DevJobs.Web.Areas.Profile.Controllers;
 using Moq;
 using NUnit.Framework;
@@ -8,7 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace DevJobs.Web.Tests.Areas.Profile
 {
@@ -54,6 +57,29 @@ namespace DevJobs.Web.Tests.Areas.Profile
 
             //Assert
             Assert.IsNotNull(result);
+        }
+
+        [Test]
+        public void TestCatalogAreaRoute()
+        {
+            var routes = new RouteCollection();
+
+            // Get my AreaRegistration class
+            var areaRegistration = new ProfileAreaRegistration();
+            Assert.AreEqual("Profile", areaRegistration.AreaName);
+
+            // Get an AreaRegistrationContext for my class. Give it an empty RouteCollection
+            var areaRegistrationContext = new AreaRegistrationContext(areaRegistration.AreaName, routes);
+            areaRegistration.RegisterArea(areaRegistrationContext);
+
+            // Mock up an HttpContext object with my test path (using Moq)
+            var context = new Mock<HttpContextBase>();
+            context.Setup(c => c.Request.AppRelativeCurrentExecutionFilePath).Returns("~/Profile");
+
+            // Get the RouteData based on the HttpContext
+            var routeData = routes.GetRouteData(context.Object);
+
+            Assert.IsTrue(true);
         }
     }
 }
