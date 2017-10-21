@@ -33,11 +33,17 @@ namespace DevJobs.Web.Areas.Profile.Controllers
         [Authorize]
         public ActionResult MyCandidatures()
         {
+            //var ads = this.adService
+            //     .GetAll()
+            //     .ProjectTo<AdViewModel>()
+            //     .Take(Constants.TopAdsCount)
+            //     .ToList();
+
             var ads = this.adService
-                 .GetAll()
-                 .ProjectTo<AdViewModel>()
-                 .Take(Constants.TopAdsCount)
-                 .ToList();
+                .GetAll()
+                .Take(Constants.TopAdsCount)
+                .Select(x => this.mapper.Map<AdViewModel>(x))
+                .ToList();
 
             var viewModel = new MainViewModel()
             {
@@ -47,11 +53,11 @@ namespace DevJobs.Web.Areas.Profile.Controllers
             return this.View(viewModel);
         }
 
-        [Authorize]
-        public ActionResult Apply(int id, string username)
-        {
+        //[Authorize]
+        //public ActionResult Apply(int id, string username)
+        //{
 
-            return RedirectToAction("MyCandidatures");
-        }
+        //    return RedirectToAction("MyCandidatures");
+        //}
     }
 }

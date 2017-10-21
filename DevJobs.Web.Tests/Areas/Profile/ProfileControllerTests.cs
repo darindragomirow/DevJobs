@@ -35,5 +35,25 @@ namespace DevJobs.Web.Tests.Areas.Profile
             //Assert
             Assert.IsNotNull(result);
         }
+
+        [Test]
+        public void MyCandidatures_ShouldReturnViewResult()
+        {
+            //Arrange
+            var adServiceMock = new Mock<IAdService>();
+            var mapper = new Mock<IMapper>();
+
+            var controller = new ProfileController
+                (
+                    adServiceMock.Object,
+                    mapper.Object
+                );
+
+            //Act
+            var result = controller.MyCandidatures() as ViewResult;
+
+            //Assert
+            Assert.IsNotNull(result);
+        }
     }
 }
