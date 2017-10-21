@@ -111,6 +111,9 @@
     <Compile Include="Controllers\AccountControllerTests.cs" />
     <Compile Include="Controllers\AdsControllerTests.cs" />
     <Compile Include="Controllers\CompaniesControllerTests.cs" />
+    <Compile Include="Models\AdvertViewModelTests.cs" />
+    <Compile Include="Models\CompanyViewModelTests.cs" />
+    <Compile Include="Models\MainViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTests.cs" />
   </ItemGroup>
