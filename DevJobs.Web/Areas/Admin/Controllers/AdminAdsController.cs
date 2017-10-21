@@ -40,12 +40,6 @@ namespace DevJobs.Web.Areas.Admin.Controllers
             return View();
         }
 
-        // GET: Admin/AdminAds/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
         // GET: Admin/AdminAds/Create
         [HttpGet]
         [Authorize(Roles = Constants.AdminRole)]
@@ -99,7 +93,7 @@ namespace DevJobs.Web.Areas.Admin.Controllers
                     technologyService.Add(newTechnology);
                     model.Technology = newTechnology;
                 }
-                
+
 
                 var level = this.levelService.GetAll().Where(x => x.Type.Equals(model.Level.Type)).SingleOrDefault();
                 if (level != null)
@@ -116,7 +110,7 @@ namespace DevJobs.Web.Areas.Admin.Controllers
                 //Mapping ViewModel to DbModel
                 //var ad = Mapper.Map<CreateAdViewModel, Advert>(model);
                 var ad = this.mapper.Map<CreateAdViewModel, Advert>(model);
-                
+
                 //Adding the mapped object to the repository
                 this.adService.Add(ad);
 
@@ -124,50 +118,6 @@ namespace DevJobs.Web.Areas.Admin.Controllers
             }
 
             return this.View();
-        }
-
-        // GET: Admin/AdminAds/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Admin/AdminAds/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Admin/AdminAds/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Admin/AdminAds/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }

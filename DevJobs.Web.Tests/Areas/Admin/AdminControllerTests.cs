@@ -78,7 +78,7 @@ namespace DevJobs.Web.Tests.Areas.Admin
         }
 
         [Test]
-        public void CreateAd_ShouldCallAdServiceAdd()
+        public void CreateAd_ShouldCallAdServiceAddWhenModelPropertiesExist()
         {
             // Arrange
             var adServiceMock = new Mock<IAdService>();
@@ -102,6 +102,38 @@ namespace DevJobs.Web.Tests.Areas.Admin
             //httpContext.Setup(x => x.User).Returns(principalMock.Object);
             var contextMock = new Mock<ControllerContext>();
             contextMock.Setup(x => x.HttpContext).Returns(httpContext.Object);
+
+            var cities = new City[]
+           {
+                new City(){ Name = "Sofiq" },
+           };
+            cityServiceMock
+                .Setup(x => x.GetAll())
+                .Returns(cities.AsQueryable());
+
+            var companies = new Company[]
+           {
+                new Company(){ Name = "Telerik" },
+           };
+            companyServiceMock
+                .Setup(x => x.GetAll())
+                .Returns(companies.AsQueryable());
+
+            var technologies = new Technology[]
+           {
+                new Technology(){ Type = ".NET" },
+           };
+            technologyServiceMock
+                .Setup(x => x.GetAll())
+                .Returns(technologies.AsQueryable());
+
+            var levels = new Level[]
+          {
+                new Level(){ Type = "Junior" },
+          };
+            levelServiceMock
+                .Setup(x => x.GetAll())
+                .Returns(levels.AsQueryable());
 
 
             var model = new CreateAdViewModel
