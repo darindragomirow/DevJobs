@@ -6,8 +6,8 @@
 }
 
 @*<h2>@Model.Title</h2>
-<hr />
-<p>@Model.Description</p>*@
+    <hr />
+    <p>@Model.Description</p>*@
 
 <div class="row">
     <div class="row">
@@ -19,7 +19,7 @@
             <hr />
         </div>
     </div>
-    
+
 
     <div class="row">
         <div class="col-md-4">
@@ -55,9 +55,8 @@
                 <hr />
             </div>
             <div class="text-center">
-                <button class="btn btn-success">Apply</button>
+               @Html.Partial("_ApplyPartial", Model)
             </div>
         </div>
     </div>
 </div>
-

@@ -320,6 +320,7 @@
     <Content Include="Views\Ads\GetAll.cshtml" />
     <Content Include="Views\Companies\GetAll.cshtml" />
     <Content Include="Views\Companies\GetDetails.cshtml" />
+    <Content Include="Views\Ads\_ApplyPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

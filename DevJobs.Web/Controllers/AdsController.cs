@@ -11,19 +11,21 @@ using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using DevJobs.Common.Constants;
+using Microsoft.AspNet.Identity;
+using DevJobs.Web.Contracts.Identity;
 
 namespace DevJobs.Web.Controllers
 {
     public class AdsController : Controller
     {
         private readonly IAdService adService;
-        //private readonly ICityService cityService;
+        private readonly IApplicationUserManager userManager;
         private readonly IMapper mapper;
 
-        public AdsController(IAdService adService,/* ICityService cityService,*/ IMapper mapper)
+        public AdsController(IAdService adService,IApplicationUserManager userManager, IMapper mapper)
         {
             this.adService = adService;
-            //this.cityService = cityService;
+            this.userManager = userManager;
             this.mapper = mapper;
         }
         [HttpGet]
@@ -44,7 +46,7 @@ namespace DevJobs.Web.Controllers
                 Ads = ads.ToList(),
             };
 
-            int pageSize = Constants.DefaultPageSize;
+            int pageSize = Common.Constants.Constants.DefaultPageSize;
             int pageNumber = (page ?? 1);
             return this.View(ads.ToPagedList(pageNumber, pageSize));
 
@@ -97,7 +99,7 @@ namespace DevJobs.Web.Controllers
                 Ads = ads,
             };
 
-            int pageSize = Constants.DefaultPageSize;
+            int pageSize = Common.Constants.Constants.DefaultPageSize;
             int pageNumber = (page ?? 1);
             return View(ads.ToPagedList(pageNumber, pageSize));
 
@@ -106,9 +108,25 @@ namespace DevJobs.Web.Controllers
 
         [HttpPost]
         [Authorize]
-        public ActionResult Apply(Guid advertId, string userId)
+        public ActionResult Apply(AdViewModel model)
         {
-            return View();
+            var advert = this.adService
+                .GetAll()
+                .Where(x => x.Id == model.Id)
+                .SingleOrDefault();
+
+            var userId = User.Identity.GetUserId();
+            var user = this.userManager
+                .Users
+                .Where(x => x.Id == userId)
+                .SingleOrDefault();
+
+            //Adding the advert to user's adverts
+            user.Adverts.Add(advert);
+
+            this.adService.AddPreview(advert);
+
+            return RedirectToAction("GetDetails", new { id = model.Id});
         }
     }
 }

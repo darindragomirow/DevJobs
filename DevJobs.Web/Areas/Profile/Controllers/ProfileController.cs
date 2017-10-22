@@ -2,7 +2,9 @@
 using AutoMapper.QueryableExtensions;
 using DevJobs.Common.Constants;
 using DevJobs.Services.Contracts;
+using DevJobs.Web.Contracts.Identity;
 using DevJobs.Web.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +17,13 @@ namespace DevJobs.Web.Areas.Profile.Controllers
     {
         private readonly IAdService adService;
         private readonly IMapper mapper;
+        private readonly IApplicationUserManager userManager;
        
-        public ProfileController(IAdService adService, IMapper mapper)
+        public ProfileController(IAdService adService, IApplicationUserManager userManager, IMapper mapper)
         {
             this.adService = adService;
             this.mapper = mapper;
+            this.userManager = userManager;
         }
 
         [HttpGet]
@@ -33,17 +37,9 @@ namespace DevJobs.Web.Areas.Profile.Controllers
         [Authorize]
         public ActionResult MyCandidatures()
         {
-            //var ads = this.adService
-            //     .GetAll()
-            //     .ProjectTo<AdViewModel>()
-            //     .Take(Constants.TopAdsCount)
-            //     .ToList();
-
-            var ads = this.adService
-                .GetAll()
-                .Take(Constants.TopAdsCount)
-                .Select(x => this.mapper.Map<AdViewModel>(x))
-                .ToList();
+            var userId = User.Identity.GetUserId();
+            var user = this.userManager.Users.Where(x => x.Id == userId).SingleOrDefault();
+            var ads = user.Adverts.Select(x => this.mapper.Map<AdViewModel>(x)).ToList();
 
             var viewModel = new MainViewModel()
             {
@@ -52,12 +48,5 @@ namespace DevJobs.Web.Areas.Profile.Controllers
 
             return this.View(viewModel);
         }
-
-        //[Authorize]
-        //public ActionResult Apply(int id, string username)
-        //{
-
-        //    return RedirectToAction("MyCandidatures");
-        //}
     }
 }

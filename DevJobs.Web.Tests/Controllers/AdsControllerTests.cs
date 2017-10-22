@@ -2,6 +2,7 @@
 using DevJobs.Models;
 using DevJobs.Services.Contracts;
 using DevJobs.Servicess.Contracts;
+using DevJobs.Web.Contracts.Identity;
 using DevJobs.Web.Controllers;
 using DevJobs.Web.Models;
 using Moq;
@@ -25,12 +26,13 @@ namespace DevJobs.Web.Tests.Controllers
             var adServiceMock = new Mock<IAdService>();
             //var cityServiceMock = new Mock<ICityService>();
             var mapper = new Mock<IMapper>();
+            var userManager = new Mock<IApplicationUserManager>();
             int page = 1;
 
             var controller = new AdsController
                 (
                 adServiceMock.Object,
-                //cityServiceMock.Object,
+                userManager.Object,
                 mapper.Object
                 );
 
@@ -46,14 +48,14 @@ namespace DevJobs.Web.Tests.Controllers
         {
             //Arrange
             var adServiceMock = new Mock<IAdService>();
-            //var cityServiceMock = new Mock<ICityService>();
+            var userManager = new Mock<IApplicationUserManager>();
             var mapper = new Mock<IMapper>();
             Guid id = Guid.NewGuid();
 
             var controller = new AdsController
                 (
                 adServiceMock.Object,
-                //cityServiceMock.Object,
+                userManager.Object,
                 mapper.Object
                 );
 
@@ -69,14 +71,14 @@ namespace DevJobs.Web.Tests.Controllers
         {
             //Arrange
             var adServiceMock = new Mock<IAdService>();
-            //var cityServiceMock = new Mock<ICityService>();
+            var userManager = new Mock<IApplicationUserManager>();
             var mapper = new Mock<IMapper>();
             Guid id = Guid.NewGuid();
 
             var controller = new AdsController
                 (
                 adServiceMock.Object,
-                //cityServiceMock.Object,
+                userManager.Object,
                 mapper.Object
                 );
 
@@ -103,15 +105,18 @@ namespace DevJobs.Web.Tests.Controllers
                 .Setup(x => x.GetAll())
                 .Returns(ads.AsQueryable());
 
-            
+
 
             var mapperMock = new Mock<IMapper>();
             mapperMock
                 .Setup(x => x.Map<AdViewModel>(It.IsAny<Advert>()))
                 .Returns<Advert>(x => new AdViewModel { Id = x.Id });
 
+            var userManager = new Mock<IApplicationUserManager>();
+
             var controller = new AdsController(
                 adServiceMock.Object,
+                userManager.Object,
                 mapperMock.Object);
 
             // Act
