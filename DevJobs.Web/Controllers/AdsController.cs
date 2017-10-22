@@ -103,5 +103,12 @@ namespace DevJobs.Web.Controllers
 
             //return this.View(viewModel);
         }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult Apply(Guid advertId, string userId)
+        {
+            return View();
+        }
     }
 }

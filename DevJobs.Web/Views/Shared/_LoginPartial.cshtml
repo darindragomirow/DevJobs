@@ -22,10 +22,13 @@
                         <span class="glyphicon glyphicon-user" id="admin"></span> Profile
                     </a>
                 </li>
+                <li>
+                    <a href="" class="btn" id="adminButton" style="color:white;">
+                        <span class="" id="admin"></span> Hello @User.Identity.GetUserName()!
+                    </a>
+                </li>
             }
-            <li>
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", new { area = "" }, htmlAttributes: new { title = "Manage" })
-            </li>
+            
             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
         </ul>
     }

@@ -93,6 +93,10 @@
     <Compile Include="Migrations\201710141502333_RequiredAttributesAddedToModels.Designer.cs">
       <DependentUpon>201710141502333_RequiredAttributesAddedToModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710212135253_AddedAdvertsInUserModel.cs" />
+    <Compile Include="Migrations\201710212135253_AddedAdvertsInUserModel.Designer.cs">
+      <DependentUpon>201710212135253_AddedAdvertsInUserModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MsSqlDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -141,6 +145,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710141502333_RequiredAttributesAddedToModels.resx">
       <DependentUpon>201710141502333_RequiredAttributesAddedToModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710212135253_AddedAdvertsInUserModel.resx">
+      <DependentUpon>201710212135253_AddedAdvertsInUserModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

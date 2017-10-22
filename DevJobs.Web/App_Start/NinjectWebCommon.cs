@@ -5,9 +5,7 @@ namespace DevJobs.Web.App_Start
 {
     using System;
     using System.Web;
-
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
     using Ninject;
     using Ninject.Web.Common;
     using Ninject.Extensions.Conventions;
@@ -17,11 +15,13 @@ namespace DevJobs.Web.App_Start
     using DevJobs.Servicess.Contracts;
     using AutoMapper;
     using DevJobs.Data.SaveContext;
-    using DevJobs.Services.Contracts;
-    using DevJobs.Services;
-    using DevJobs.Servicess;
     using DevJobs.Web.Contracts;
     using DevJobs.Web.Contracts.Identity;
+    using DevJobs.Web.Identity;
+    using DevJobs.Models;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using Microsoft.Owin.Security;
 
     public static class NinjectWebCommon
     {
@@ -95,8 +95,12 @@ namespace DevJobs.Web.App_Start
             kernel.Bind(typeof(DbContext), typeof(MsSqlDbContext)).To<MsSqlDbContext>().InRequestScope();
             kernel.Bind<ISaveContext>().To<SaveContext>();
             kernel.Bind<IMapper>().ToMethod(x => Mapper.Instance);
-            kernel.Bind<IApplicationSignInManager>().To<ApplicationSignInManager>().InRequestScope();
-            kernel.Bind<IApplicationUserManager>().To<ApplicationUserManager>().InRequestScope();
+
+            // Identity
+            kernel.Bind<IUserStore<User>>().To<UserStore<User>>().InRequestScope();
+            //kernel.Bind<IApplicationUserManager>().To<ApplicationUserManager>().InRequestScope();
+            //kernel.Bind<IApplicationSignInManager>().To<ApplicationSignInManager>().InRequestScope();
+            kernel.Bind<IAuthenticationManager>().ToMethod(c => HttpContext.Current.GetOwinContext().Authentication).InRequestScope();
             //kernel.Bind<IMapper>().To<Mapper>().InSingletonScope();
             //kernel.Bind<IAdService>().To<AdService>().InSingletonScope();
             //kernel.Bind<ICityService>().To<CityService>().InSingletonScope();

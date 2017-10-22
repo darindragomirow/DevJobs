@@ -21,7 +21,7 @@ namespace DevJobs.Web.Tests.Controllers
             //Arrange
             var companyServiceMock = new Mock<ICompanyService>();
             var mapper = new Mock<IMapper>();
-            int page = 1;
+            int page = 3;
 
             var controller = new CompaniesController
                 (

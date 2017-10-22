@@ -14,6 +14,11 @@ namespace DevJobs.Models
 {
     public class Advert : DataModel, IDataModel
     {
+        public Advert()
+        {
+            this.Users = new HashSet<User>();
+        }
+
         [Required]
         public string Title { get; set; }
 
@@ -49,5 +54,7 @@ namespace DevJobs.Models
         public virtual Level Level { get; set; }
 
         public Guid ? LevelId { get; set; }
+
+        public virtual ICollection<User> Users { get; set; }
     }
 }
