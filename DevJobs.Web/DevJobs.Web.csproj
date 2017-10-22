@@ -321,6 +321,7 @@
     <Content Include="Views\Companies\GetAll.cshtml" />
     <Content Include="Views\Companies\GetDetails.cshtml" />
     <Content Include="Views\Ads\_ApplyPartial.cshtml" />
+    <Content Include="Views\Home\_LatestAddedAdverts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

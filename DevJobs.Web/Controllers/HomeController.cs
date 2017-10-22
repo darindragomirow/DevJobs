@@ -63,6 +63,23 @@ namespace DevJobs.Web.Controllers
             return View(viewModel);
         }
 
+        [OutputCache(Duration = Constants.DefaultCacheDuration)]
+        public PartialViewResult LatestAddedAdverts()
+        {
+            var ads = this.adService
+               .GetAll()
+               .OrderByDescending(x => x.CreatedOn.Value)
+               .Take(Constants.TopAdsCount)
+               .ToList()
+               .Select(x => this.mapper.Map<AdViewModel>(x));
+            var viewModel = new MainViewModel()
+            {
+                Ads = ads.ToList(),
+            };
+
+            return PartialView("_LatestAddedAdverts", viewModel);
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

@@ -1,0 +1,17 @@
+﻿@using DevJobs.Web.Models
+@model MainViewModel
+    <div class="col-md-8 lastAds">
+        <div class="title">
+            <h4>Latest added adverts:</h4>
+        </div>
+        @foreach (var ad in Model.Ads)
+            {
+            <a style="color:black" href='@Url.Action("GetDetails","Ads", new { ad.Id },null)'>
+                <div class="ad">
+                    <span class="pull-right">@ad.CreatedOn</span>
+                    <h3>@ad.Title</h3>
+                    <h6>@ad.City</h6>
+                </div>
+            </a>
+        }
+    </div>
