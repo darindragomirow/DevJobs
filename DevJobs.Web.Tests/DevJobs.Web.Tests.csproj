@@ -115,6 +115,7 @@
     <Compile Include="Controllers\AccountControllerTests.cs" />
     <Compile Include="Controllers\AdsControllerTests.cs" />
     <Compile Include="Controllers\CompaniesControllerTests.cs" />
+    <Compile Include="Controllers\ErrorControllerTests.cs" />
     <Compile Include="Controllers\ManageControllerTests.cs" />
     <Compile Include="Models\AdvertViewModelTests.cs" />
     <Compile Include="Models\CompanyViewModelTests.cs" />
