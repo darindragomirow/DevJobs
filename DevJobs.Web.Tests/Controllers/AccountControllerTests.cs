@@ -1,6 +1,11 @@
-﻿using DevJobs.Web.Contracts;
+﻿using DevJobs.Models;
+using DevJobs.Web.Contracts;
 using DevJobs.Web.Contracts.Identity;
 using DevJobs.Web.Controllers;
+using DevJobs.Web.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using Moq;
 using NUnit.Framework;
 using System;
@@ -13,77 +18,194 @@ using System.Web.Mvc;
 
 namespace DevJobs.Web.Tests.Controllers
 {
-    //[TestFixture]
-    //public class AccountControllerTests
-    //{
-    //    [Test]
-    //    public void Login_ShouldReturnViewResult()
-    //    {
-    //        //Arrange
-    //        string url = "www.test.com";
+    [TestFixture]
+    public class AccountControllerTests
+    {
+        [Test]
+        public void LoginGet_ShouldReturnView()
+        {
+            // Arrange
+            var signInManagerMock = new Mock<IApplicationSignInManager>();
+            var userManagerMock = new Mock<IApplicationUserManager>();
+            var authManager = new Mock<IAuthenticationManager>();
 
-    //        var controller = new AccountController();
+            var controller = new AccountController(
+                userManagerMock.Object,
+                signInManagerMock.Object,
+                authManager.Object);
 
-    //        //Act
-    //        var result = controller.Login(url) as ViewResult;
+            // Act
+            var result = controller.Login(string.Empty);
 
-    //        //Assert
-    //        Assert.IsNotNull(result);
-    //    }
+            // Assert
+            Assert.IsInstanceOf<ViewResult>(result);
+        }
 
-    //    [Test]
-    //    public void Register_ShouldReturnViewResult()
-    //    {
-    //        //Arrange
-    //        var controller = new AccountController();
+        [Test]
+        public void LoginPost_ShouldReDisplayFormIfThereAreModelErrors()
+        {
+            // Arrange
+            var userManagerMock = new Mock<IApplicationUserManager>();
+            var authManager = new Mock<IAuthenticationManager>();
+            var signInManagerMock = new Mock<IApplicationSignInManager>();
 
-    //        //Act
-    //        var result = controller.Register() as ViewResult;
+            var controller = new AccountController(
+                userManagerMock.Object,
+                signInManagerMock.Object,
+                authManager.Object)
+            {
+                Url = new Mock<UrlHelper>().Object
+            };
+            controller.ModelState.AddModelError("", "");
 
-    //        //Assert
-    //        Assert.IsNotNull(result);
-    //    }
+            var model = new LoginViewModel();
 
-    //    [Test]
-    //    public void ForgotPassword_ShouldReturnViewResult()
-    //    {
-    //        //Arrange
-    //        var controller = new AccountController();
+            // Act
+            var result = controller.Login(model, "").Result;
 
-    //        //Act
-    //        var result = controller.ForgotPassword() as ViewResult;
+            // Assert
+            Assert.IsInstanceOf<ViewResult>(result);
+        }
 
-    //        //Assert
-    //        Assert.IsNotNull(result);
-    //    }
+        [Test]
+        public void LoginPost_ShouldReDisplayFormIfThereIsASignInError()
+        {
+            // Arrange
+            var userManagerMock = new Mock<IApplicationUserManager>();
+            var authManager = new Mock<IAuthenticationManager>();
 
-    //    [Test]
-    //    public void ResetPassword_ShouldReturnViewResult()
-    //    {
-    //        //Arrange
-    //        string code = "newpass";
-    //        var controller = new AccountController();
+            var signInManagerMock = new Mock<IApplicationSignInManager>();
+            signInManagerMock
+                .Setup(x => x.PasswordSignInAsync(
+                    It.IsAny<string>(),
+                    It.IsAny<string>(),
+                    It.IsAny<bool>(),
+                    It.IsAny<bool>()))
+                .ReturnsAsync(SignInStatus.Failure);
 
-    //        //Act
-    //        var result = controller.ResetPassword(code) as ViewResult;
+            var controller = new AccountController(
+                userManagerMock.Object,
+                signInManagerMock.Object,
+                authManager.Object)
+            {
+                Url = new Mock<UrlHelper>().Object
+            };
 
-    //        //Assert
-    //        Assert.IsNotNull(result);
-    //    }
+            var model = new LoginViewModel();
 
-    //    [Test]
-    //    public void ResetPasswordConfirmation_ShouldReturnViewResult()
-    //    {
-    //        //Arrange
-    //        var controller = new AccountController();
+            // Act
+            var result = controller.Login(model, "").Result;
 
-    //        //Act
-    //        var result = controller.ResetPasswordConfirmation() as ViewResult;
+            // Assert
+            Assert.IsInstanceOf<ViewResult>(result);
+        }
 
-    //        //Assert
-    //        Assert.IsNotNull(result);
-    //    }
+        [Test]
+        public void RegisterGet_ShouldReturnView()
+        {
+            // Arrange
+            var signInManagerMock = new Mock<IApplicationSignInManager>();
+            var userManagerMock = new Mock<IApplicationUserManager>();
+            var authManager = new Mock<IAuthenticationManager>();
+
+            var controller = new AccountController(
+                userManagerMock.Object,
+                signInManagerMock.Object,
+                authManager.Object);
+
+            // Act
+            var result = controller.Register();
+
+            // Assert
+            Assert.IsInstanceOf<ViewResult>(result);
+        }
+
+        [Test]
+        public void RegisterPost_ShouldCallCreateAsyncWithCorectArgs()
+        {
+            // Arrange
+            var signInManagerMock = new Mock<IApplicationSignInManager>();
+            var authManager = new Mock<IAuthenticationManager>();
+
+            var userManagerMock = new Mock<IApplicationUserManager>();
+            userManagerMock
+                .Setup(x => x.CreateAsync(It.IsAny<User>(), It.IsAny<string>()))
+                .ReturnsAsync(IdentityResult.Success);
+
+            var controller = new AccountController(
+                userManagerMock.Object,
+                signInManagerMock.Object,
+                authManager.Object)
+            {
+                Url = new Mock<UrlHelper>().Object
+            };
+
+            var model = new RegisterViewModel
+            {
+                Email = "username",
+                Password = "passowrd",
+                ConfirmPassword = "password",
+            };
+
+            // Act
+            var result = controller.Register(model).Result;
+
+            // Assert
+            userManagerMock.Verify(x => x.CreateAsync(
+                It.IsAny<User>(),
+                It.Is<string>(y => y == model.Password)));
+        }
+
+        [Test]
+        public void RegisterPost_ShouldAddErrorsWhenNeeded()
+        {
+            // Arrange
+            var signInManagerMock = new Mock<IApplicationSignInManager>();
+            var authManager = new Mock<IAuthenticationManager>();
+
+            var userManagerMock = new Mock<IApplicationUserManager>();
+            userManagerMock
+                .Setup(x => x.CreateAsync(It.IsAny<User>(), It.IsAny<string>()))
+                .ReturnsAsync(IdentityResult.Failed("error"));
+
+            var controller = new AccountController(
+                userManagerMock.Object,
+                signInManagerMock.Object,
+                authManager.Object)
+            {
+                Url = new Mock<UrlHelper>().Object
+            };
+
+            var model = new RegisterViewModel();
+
+            // Act
+            var result = controller.Register(model).Result;
+
+            // Assert
+            Assert.IsFalse(controller.ModelState.IsValid);
+        }
 
 
-    //}
+
+        [Test]
+        public void LogOff_ShouldCallCreateSignOutAndRedirect()
+        {
+            // Arrange
+            var signInManagerMock = new Mock<IApplicationSignInManager>();
+            var authManagerMock = new Mock<IAuthenticationManager>();
+            var userManagerMock = new Mock<IApplicationUserManager>();
+
+            var controller = new AccountController(
+                userManagerMock.Object,
+                signInManagerMock.Object,
+                authManagerMock.Object);
+
+            // Act
+            var result = controller.LogOff();
+
+            // Assert
+            authManagerMock.Verify(x => x.SignOut(It.IsAny<string>()), Times.Once);
+            Assert.IsInstanceOf<RedirectToRouteResult>(result);
+        }
+    }
 }
