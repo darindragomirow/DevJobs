@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using AutoMapper;
+using System.ComponentModel.DataAnnotations;
 
 namespace DevJobs.Web.Models
 {
@@ -17,6 +18,7 @@ namespace DevJobs.Web.Models
 
         public string Description { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:d MMMM-yyyy hh:mm}")]
         public DateTime CreatedOn { get; set; }
 
         public string CompanyName { get; set; }

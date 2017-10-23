@@ -15,47 +15,44 @@
             <img src="~/Content/Images/company-logo.gif" style="height:100px;height:100px; padding:10px;margin:10px;" />
         </div>
         <div class="col-md-5">
-            <h1 style="display:inline-block">@Model.Title</h1>
+            <h1 style="display:inline-block">@Html.DisplayFor(x => x.Title)</h1>
             <hr />
         </div>
     </div>
-
-
     <div class="row">
         <div class="col-md-4">
             <div class="jobOptions">
                 <div><h3>Info</h3></div>
                 <strong style="display:block;">Company</strong>
-                <span>@Model.CompanyName</span>
+                <span>@Html.DisplayFor(x => x.CompanyName)</span>
                 <br />
                 <strong style="display:block;">City</strong>
-                <span>@Model.City</span>
+                <span>@Html.DisplayFor(x => x.City)</span>
                 <br />
                 <strong style="display:block;">Technology</strong>
-                <span>@Model.Technology</span>
+                <span>@Html.DisplayFor(x => x.Technology)</span>
                 <br />
                 <strong style="display:block;">Level</strong>
-                <span>@Model.Level</span>
+                <span>@Html.DisplayFor(x => x.Level)</span>
                 <br />
                 <strong style="display:block;">Added on</strong>
-                <span>@Model.CreatedOn</span>
+                <span>@Html.DisplayFor(x => x.CreatedOn)</span>
                 <br />
                 <strong style="display:block;">Seen</strong>
-                <span>@Model.PreViews</span>
+                <span>@Html.DisplayFor(x => x.PreViews)</span>
             </div>
         </div>
         <div class="col-md-6" style="display:inline-block;">
             <div class="info">
-                @*<h1>@Model.Title</h1>*@
                 <h3 class="adDescription"><strong>Description and requirements:</strong></h3>
                 <hr />
                 <p>
-                    <strong>@Model.Description</strong>
+                    <strong>@Html.DisplayFor(x => x.Description)</strong>
                 </p>
                 <hr />
             </div>
             <div class="text-center">
-               @Html.Partial("_ApplyPartial", Model)
+                @Html.Partial("_ApplyPartial", Model)
             </div>
         </div>
     </div>
