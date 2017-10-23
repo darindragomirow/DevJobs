@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DevJobs.Services.Contracts;
 using DevJobs.Servicess.Contracts;
 using DevJobs.Web.Controllers;
 using Moq;
@@ -20,12 +21,14 @@ namespace DevJobs.Web.Tests.Controllers
         {
             //Arrange
             var companyServiceMock = new Mock<ICompanyService>();
+            var adServiceMock = new Mock<IAdService>();
             var mapper = new Mock<IMapper>();
             int page = 3;
 
             var controller = new CompaniesController
                 (
                 companyServiceMock.Object,
+                adServiceMock.Object,
                 mapper.Object
                 );
 
@@ -42,11 +45,13 @@ namespace DevJobs.Web.Tests.Controllers
             //Arrange
             var companyServiceMock = new Mock<ICompanyService>();
             var mapper = new Mock<IMapper>();
+            var adServiceMock = new Mock<IAdService>();
             Guid id = Guid.NewGuid();
 
             var controller = new CompaniesController
                 (
                 companyServiceMock.Object,
+                adServiceMock.Object,
                 mapper.Object
                 );
 

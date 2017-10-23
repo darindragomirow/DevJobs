@@ -14,7 +14,7 @@ namespace DevJobs.Common.Constants
 
         public const int DefaultPageSize = 5;
 
-        public const int DefaultCacheDuration = 120;
+        public const int DefaultCacheDuration = 300;
 
         public const string AdminRole = "Admin";
 

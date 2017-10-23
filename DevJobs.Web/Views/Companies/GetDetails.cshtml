@@ -1,25 +1,58 @@
 ﻿@using DevJobs.Web.Models
-@model CompanyViewModel
+@model CompanyAdsViewModel
 @{
     ViewBag.Title = "About Company";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var index = 1;
 }
 
 <h2>About Company</h2>
-<div>
-    <h3 id="companyName" class="text-center companyName">@Model.Name</h3>
-    @if (Model.Description != null)
-    {
-        @Html.DisplayText(Model.Description)
-        <p>
-            <strong>@Model.Description</strong>
-        </p>
-            <br />
-    }
-    <h4>Rating</h4>
-    @for (var i = 0; i < Model.Rating; i++)
+<div class="">
+    <br />
+    <h4>Rating: @Model.Company.Rating</h4>
+    @for (var i = 0; i < Model.Company.Rating; i++)
     {
         <span class="glyphicon glyphicon-star"></span>
     }
-    <span>@Model.Rating</span>
+    <span></span>
+    <h3 id="companyName" class="text-center companyName">@Model.Company.Name</h3>
+    @if (Model.Company.Description != null)
+    {
+        @Html.DisplayText(Model.Company.Description)
+        <p>
+            <strong>@Model.Company.Description</strong>
+        </p>
+            <br />
+    }
+</div>
+<div class="">
+    <h3 class="text-center" style="color:blue">Company's Active Adverts</h3>
+    @if (Model.Ads.Count == 0)
+    {
+        <h3 style="color:red">This company has no active adverts.</h3>
+    }
+    @foreach (var ad in Model.Ads)
+    {
+        if ((index % 2 == 1))
+        {
+            <a style="color:black" href='@Url.Action("GetDetails", "Ads", new { ad.Id }, null)'>
+                <div class="ad" style="background-color:rgba(230, 224, 224, 0.70); padding:3px;">
+                    <span class="pull-right">@ad.CreatedOn</span>
+                    <h3>@ad.Title</h3>
+                    <h6>@ad.City</h6>
+                </div>
+            </a>
+        }
+        else
+        {
+            <a style="color:black" href='@Url.Action("GetDetails", "Ads", new { ad.Id }, null)'>
+                <div class="ad" style="padding:3px;">
+                    <span class="pull-right">@ad.CreatedOn</span>
+                    <h3>@ad.Title</h3>
+                    <h6>@ad.City</h6>
+                </div>
+            </a>
+        }
+        index++;
+    }
 </div>
