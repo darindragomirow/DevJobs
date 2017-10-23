@@ -38,6 +38,7 @@ namespace DevJobs.Web.Controllers
 
             var ads = this.adService
                  .GetAll()
+                 .OrderByDescending(x => x.CreatedOn.Value)
                  .ToList()
                  .Select(x => this.mapper.Map<AdViewModel>(x));
 
