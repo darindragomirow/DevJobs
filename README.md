@@ -30,7 +30,7 @@ When you've choosen an advert you want to apply, just click the green button on 
 <br/>
 You can easily see for which adverts you've applied, as you go to <strong>Profile</strong> and then select <strong>My Candidatures<strong>.
 
-<h5>Application features:</h5>
+<h3>Application features:</h3>
  -User account with roles
   <br/>
  -Users can apply for each advert
@@ -40,7 +40,7 @@ You can easily see for which adverts you've applied, as you go to <strong>Profil
  -Users have personal profile
   <br/>
  -Admin has admin page
- <h5>Development</h5>
+ <h3>Development</h3>
  -EntityFramework 6 as DataBase
  <br/>
  -Continious Integration on appveyor.com
