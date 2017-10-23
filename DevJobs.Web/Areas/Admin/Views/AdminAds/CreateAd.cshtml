@@ -15,32 +15,38 @@
             <hr />
             <form>
                 <div class="col-md-4">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group">
                         <label>Title</label>
                         <br />
                         @Html.TextBoxFor(m => m.Title)
+                        @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         <label>Company</label>
                         <br />
                         @Html.TextBoxFor(m => m.Company.Name)
+                        @Html.ValidationMessageFor(m => m.Company.Name, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         <label>Technology</label>
                         <br />
                         @Html.TextBoxFor(m => m.Technology.Type)
+                        @Html.ValidationMessageFor(m => m.Technology.Type, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         <label>Level</label>
                         <br />
                         @*@Html.DropDownListFor(,m => m.City)*@
                         @Html.TextBoxFor(m => m.Level.Type)
+                        @Html.ValidationMessageFor(m => m.Level.Type, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         <label>City</label>
                         <br />
                         @*@Html.DropDownListFor(m => m.Level)>*@
                         @Html.TextBoxFor(m => m.City.Name)
+                        @Html.ValidationMessageFor(m => m.City.Name, "", new { @class = "text-danger" })
                     </div>
                     </div>
                     <div class="col-md-4">
@@ -48,6 +54,7 @@
                             <label>Description</label>
                             <br />
                             @Html.TextAreaFor(m => m.Description, 10, 40, new { HtmlAttributes = new { } })
+                            @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
                             <label for="exampleInputFile">File input</label>
